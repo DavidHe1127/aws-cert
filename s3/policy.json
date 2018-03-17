@@ -1,0 +1,22 @@
+{
+    "Id": "Policy1521266205036",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "s3:*",
+            "Effect": "Deny",
+            "Resource": "arn:aws:s3:::parrodise",
+            "Principal": {
+                "AWS": ["arn:aws:iam::616874792320:user/david-avatar"]
+            }
+        },
+        {
+            "Action": "s3:*",
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::parrodise",
+            "Principal": {
+                "AWS": ["arn:aws:iam::616874792320:user/david-no-avatar"]
+            }
+        }
+    ]
+}
