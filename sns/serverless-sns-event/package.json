@@ -1,0 +1,19 @@
+{
+  "name": "serverless-sns-event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^3.20.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.235.1",
+    "serverless-pseudo-parameters": "^1.6.0"
+  }
+}

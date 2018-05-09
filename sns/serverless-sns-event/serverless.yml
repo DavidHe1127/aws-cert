@@ -1,0 +1,35 @@
+service: new-product-request-processor
+
+plugins:
+  - serverless-offline
+  - serverless-pseudo-parameters
+
+custom:
+  topic: NEW_PROD_REQ
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  region: us-east-2
+  stage: dev
+  environment:
+    TOPIC_ARN: 'arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.topic}'
+  iamRoleStatements:
+    - Effect: "Allow"
+      Resource: "*"
+      Action:
+        - "sns:*"
+
+functions:
+  addNote:
+    handler: addNote.addNote
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+
+  analyzeNote:
+    handler: analyzeNote.analyzeNote
+    events:
+      - sns: analyzeNote
