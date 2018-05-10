@@ -6,6 +6,15 @@ plugins:
 
 custom:
   topic: NEW_PROD_REQ
+  stage: ${opt:stage, self:provider.stage}
+  config: ${file(env-${self:custom.stage}.yml)}
+  env:
+    dev:
+      ACCOUNT_ID: ${self:custom.config.ACCOUNT_ID}
+      REGION: us-east-2
+    prod:
+      ACCOUNT_ID: '#{AWS::AccountId}'
+      REGION: '#{AWS:Region}'
 
 provider:
   name: aws
@@ -13,7 +22,8 @@ provider:
   region: us-east-2
   stage: dev
   environment:
-    TOPIC_ARN: 'arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.topic}'
+    REGION: ${self:custom.env.${self:custom.stage}.REGION}
+    TOPIC_ARN: 'arn:aws:sns:${self:provider.region}:${self:custom.env.${self:custom.stage}.ACCOUNT_ID}:${self:custom.topic}'
   iamRoleStatements:
     - Effect: "Allow"
       Resource: "*"
@@ -32,4 +42,4 @@ functions:
   analyzeNote:
     handler: analyzeNote.analyzeNote
     events:
-      - sns: analyzeNote
+      - sns: ${self:custom.topic}

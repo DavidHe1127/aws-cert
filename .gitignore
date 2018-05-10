@@ -25,4 +25,5 @@ __generated__
 
 # local aws config
 config.json
-
+sns/serverless-sns-event/env-dev.yml
+sns/serverless-sns-event/env-prod.yml
