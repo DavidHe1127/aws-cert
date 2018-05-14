@@ -39,7 +39,23 @@ functions:
           method: post
           cors: true
 
-  analyzeNote:
-    handler: analyzeNote.analyzeNote
-    events:
-      - sns: ${self:custom.topic}
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:custom.topic}-QUEUE
+
+    SNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: SNS Topic
+        TopicName: ${self:custom.topic}
+
+    SNSSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+          Endpoint: arn:aws:sqs:us-east-2:616874792320:${self:custom.topic}-QUEUE
+          Protocol: sqs
+          TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
+            # { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.topic}" ] ]  }
