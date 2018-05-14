@@ -51,11 +51,39 @@ resources:
       Properties:
         DisplayName: SNS Topic
         TopicName: ${self:custom.topic}
+        Subscription:
+          - Endpoint:
+              Fn::GetAtt:
+                - SQSQueue
+                - Arn
+            Protocol: sqs
 
-    SNSSubscription:
-      Type: AWS::SNS::Subscription
+    SQSQueuePolicy:
+      Type: AWS::SQS::QueuePolicy
       Properties:
-          Endpoint: arn:aws:sqs:us-east-2:616874792320:${self:custom.topic}-QUEUE
-          Protocol: sqs
-          TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
+        PolicyDocument:
+          Id: SQSQueuePolicy
+          Statement:
+          - Sid: Allow-SendMessage-To-Both-Queues-From-SNS-Topic
+            Effect: Allow
+            Principal:
+              AWS: "*"
+            Action:
+            - sqs:SendMessage
+            Resource: "*"
+            Condition:
+              ArnEquals:
+                aws:SourceArn:
+                  Ref: SNSTopic
+        Queues:
+        - Ref: SQSQueue
+
+    # SNSSubscription:
+    #   Type: AWS::SNS::Subscription
+    #   Properties:
+    #       Endpoint: arn:aws:sqs:us-east-2:616874792320:${self:custom.topic}-QUEUE
+    #       Protocol: sqs
+    #       TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
             # { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.topic}" ] ]  }
+
+
