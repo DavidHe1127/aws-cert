@@ -18,7 +18,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs8.10
   region: us-east-2
   stage: dev
   environment:
@@ -37,6 +37,14 @@ functions:
       - http:
           path: notes
           method: post
+          cors: true
+
+  getNewProductRequest:
+    handler: getNewProductRequest.getNewProductRequest
+    events:
+      - http:
+          path: new-product-requests
+          method: get
           cors: true
 
 resources:
@@ -81,6 +89,3 @@ resources:
               - Arn
           Protocol: sqs
           TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
-          #   { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.topic}" ] ]  }
-
-

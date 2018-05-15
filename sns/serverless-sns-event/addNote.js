@@ -1,5 +1,3 @@
-'use strict';
-
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 const sns = new AWS.SNS({
   region: process.env.REGION
