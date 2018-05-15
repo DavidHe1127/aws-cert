@@ -51,12 +51,6 @@ resources:
       Properties:
         DisplayName: SNS Topic
         TopicName: ${self:custom.topic}
-        Subscription:
-          - Endpoint:
-              Fn::GetAtt:
-                - SQSQueue
-                - Arn
-            Protocol: sqs
 
     SQSQueuePolicy:
       Type: AWS::SQS::QueuePolicy
@@ -78,12 +72,15 @@ resources:
         Queues:
         - Ref: SQSQueue
 
-    # SNSSubscription:
-    #   Type: AWS::SNS::Subscription
-    #   Properties:
-    #       Endpoint: arn:aws:sqs:us-east-2:616874792320:${self:custom.topic}-QUEUE
-    #       Protocol: sqs
-    #       TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
-            # { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.topic}" ] ]  }
+    SNSSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+          Endpoint:
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn
+          Protocol: sqs
+          TopicArn: arn:aws:sns:us-east-2:616874792320:${self:custom.topic}
+          #   { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.topic}" ] ]  }
 
 
