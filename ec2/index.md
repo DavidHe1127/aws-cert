@@ -21,10 +21,10 @@ If your instance fails, you can move the Elastic IP address to another EC2 insta
 
 To address your questions:
 
-If launch an instance in EC2-Classic, EIP = Public IP?
+>> If launch an instance in EC2-Classic, EIP = Public IP?
 No. An Elastic IP is never the same as an auto-assigned Public IP.
 
-If launch an instance in EC2-VPC, the public IP of an instance can be the NAT address?
+>> If launch an instance in EC2-VPC, the public IP of an instance can be the NAT address?
 If your EC2 instance is in a public subnet in your VPC, it can have it's own IP address (Elastic IP or Public IP) for internet connections through your VPC's Internet Gateway.
 
 If your EC2 instance is in a private subnet in your VPC, then it can use your NAT to make outbound connections. The outside world would see it's IP address as your NAT's IP address, but the NAT's IP address would never "be" the Public IP address of the instance
