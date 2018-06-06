@@ -1,4 +1,6 @@
 * [Elastic IP](#eip)
+* [EC2 Reserved vs. on-demand instances](#ec2-reserved-on-demand-instance)
+* [CIDR and subnet mask notation](#cidr-subnet-mask-notation)
 
 ### eip
 An Elastic IP address, is an address that you request from AWS and is allocated to you until you choose to release it back to AWS. This means that only you can use this IP address.
@@ -30,3 +32,23 @@ No. An Elastic IP is never the same as an auto-assigned Public IP.
 If your EC2 instance is in a public subnet in your VPC, it can have it's own IP address (Elastic IP or Public IP) for internet connections through your VPC's Internet Gateway.
 
 If your EC2 instance is in a private subnet in your VPC, then it can use your NAT to make outbound connections. The outside world would see it's IP address as your NAT's IP address, but the NAT's IP address would never "be" the Public IP address of the instance
+
+### ec2-reserved-on-demand-instance
+
+* The ONLY difference is in billing and availability
+* If you do not expect to change the EC2 Instance type, or its availability zone over the time period, then purchasing a Reserved Instance type offers the best value for your investment.
+* If you know you are only going to use a particular server part-time – say, 8 hours a day, 5 days a week – we recommend purchasing On-Demand Instances for those servers
+* We recommend that you purchase Reserved Instances only when you know you are going to use it close to 24x7 (or at least more than 75% of the time)
+
+### cidr-subnet-mask-notation
+
+`cidr prefix` - */xx* denotes how many bits it masks.
+
+```js
+0.0.0.0/0         // 0 bit
+128.0.0.0/1       // 1 bit  10000000 => 128
+192.0.0.0/2       // 2 bits 11000000 => 192
+255.0.0.0/8       // 8 bits 11111111 => 255
+255.255.255.0/24  // 24 bits 11111111 11111111 11111111 => 255.255.255
+```
+
