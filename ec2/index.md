@@ -1,4 +1,4 @@
-* (eip)[#eip]
+* [Elastic IP](#eip)
 
 ### eip
 An Elastic IP address, is an address that you request from AWS and is allocated to you until you choose to release it back to AWS. This means that only you can use this IP address.
