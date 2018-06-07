@@ -1,6 +1,7 @@
 * [Elastic IP](#eip)
 * [EC2 Reserved vs. on-demand instances](#ec2-reserved-on-demand-instance)
 * [CIDR and subnet mask notation](#cidr-subnet-mask-notation)
+* [EC2 instance AMI and EBS volume snapshot](#ec2-instance-ami-vs-ebs-volume-snapshot)
 
 ### eip
 An Elastic IP address, is an address that you request from AWS and is allocated to you until you choose to release it back to AWS. This means that only you can use this IP address.
@@ -52,3 +53,7 @@ If your EC2 instance is in a private subnet in your VPC, then it can use your NA
 255.255.255.0/24  // 24 bits 11111111 11111111 11111111 => 255.255.255
 ```
 
+### ec2-instance-ami-vs-ebs-volume-snapshot
+EBS volume - hard disk on your ec2 instance
+EBS volume snapshot - a copy of your volume with state/data at a certain point. It can be replicated onto new volumes to have the same state/data.
+AMI - a snapshot of root EBS volume - normally where OS resides
