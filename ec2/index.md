@@ -3,6 +3,7 @@
 * [CIDR and subnet mask notation](#cidr-subnet-mask-notation)
 * [EC2 instance AMI and EBS volume snapshot](#ec2-instance-ami-vs-ebs-volume-snapshot)
 * [RAID](#raid)
+* [Load balancer](#load-balancer)
 
 ### eip
 An Elastic IP address, is an address that you request from AWS and is allocated to you until you choose to release it back to AWS. This means that only you can use this IP address.
@@ -62,3 +63,9 @@ AMI - a snapshot of root EBS volume - normally where OS resides
 ### raid
 `Redundant Array of Independent Disks` - basically it is a way to bundle up multiple volume into a single one volume.
 Use case scenario is when volume is provisioned with max size and it still does meet your `iops` requirement. Then you need a `raid`.
+
+
+### load-balancer
+`Health Check` will look for the file configured as ping path during health check setup. If the file isn't here, it will result in instace status being `out of service`. If the file is there, then status will be `in service`
+ 
+
