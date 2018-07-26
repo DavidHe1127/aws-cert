@@ -66,6 +66,8 @@ Use case scenario is when volume is provisioned with max size and it still does 
 
 
 ### load-balancer
-`Health Check` will look for the file configured as ping path during health check setup. If the file isn't here, it will result in instace status being `out of service`. If the file is there, then status will be `in service`
- 
+`Health Check` will look for the file configured as ping path during health check setup. If the file isn't here, it will result in instace status being `out of service`. If the file is there, then status will be `in service`.
+
+Load balancer will not route traffic to instances that are `out of service` since those are failing to pass the health check and presumbly load balancer think they are down.
+
 
