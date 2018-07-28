@@ -1,4 +1,4 @@
-# This is exam tips and notes
+# AWS Solution Architect Associate Exam tips and notes
 
 ### Services Overview
 ### IAM
@@ -18,6 +18,25 @@
 
 ### Database
 ### VPC
+  * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
+  * 1 VPC *ALLOW* 1 internet gateway
+  * Default VPC has one default route table, internet gateway. Each EC2 instance has both a public and private ip address
+  * No Transitive peering
+    In this diagram, `A` can peer into `B` and `C`. But `B` cannot peer into `C`. For them to peer each other, peering needs to be established between `B` and `C`
+    ```
+              VPC C
+               |
+      VPC B - VPC A - VPC E
+               |
+              VPC D
+
+    ```
+  * Security Groups are stateful - outbound port automatically turned on when inbound port has been specified
+    Access Control Lists are stateless - need to turn ports on for both inbound and outbound
+
+
+
+
 ### Application Services
   #### SQS
   #### SWF
