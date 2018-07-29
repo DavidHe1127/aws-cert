@@ -19,7 +19,7 @@
 ### Database
 ### VPC
   * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
-  * 1 VPC *ALLOW* 1 internet gateway
+  * Each VPC can only allow one `Internet Gateway`
   * Default VPC has one default route table, internet gateway. Each EC2 instance has both a public and private ip address
   * No Transitive peering
     In this diagram, `A` can peer into `B` and `C`. But `B` cannot peer into `C`. For them to peer each other, peering needs to be established between `B` and `C`
@@ -33,8 +33,8 @@
     ```
   * Security Groups are stateful - outbound port automatically turned on when inbound port has been specified
     Access Control Lists are stateless - need to turn ports on for both inbound and outbound
-
-
+  * The *first four* ip addresses and the *last* ip address in each subnet CIDR block are not available for you to use
+  * Security Group does not span across multiple vpcs. You must specify the VPC the security group is created in.
 
 
 ### Application Services
