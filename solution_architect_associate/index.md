@@ -45,7 +45,7 @@
        * NAT gateway *must be* in a public subnet with a route table that routes internet traffic to an internet gateway
        * Instances that need internet access *must be* in a private subnet with a route table that routes internet traffic
           to the NAT gateway
-       * In summary, two key points - `NAT Gateway` needs to be in public subnet *AND* it needs to be added to the main route table
+       * In summary, two key points - `NAT Gateway` needs to be in public subnet **AND** it needs to be added to the main route table
        * ![NAT Gateway](./NAT_gateway.png)
 
 
