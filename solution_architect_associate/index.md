@@ -38,14 +38,14 @@
         Access Control Lists are stateless - need to turn ports on for both inbound and outbound
       * Security Group does not span across multiple vpcs. You must specify the VPC the security group is created in
 
-    #### NAT instance & NAT gateway
+    #### NAT instance
       * You must disable source/destination checks on the `NAT instance`
-
-      ##### NAT gateway key points
-        * NAT gateway *must be* in a public subnet with a route table that routes internet traffic to an internet gateway
-        * Instances that need internet access *must be* in a private subnet with a route table that routes internet traffic
+    
+    #### NAT gateway key points  
+       * NAT gateway *must be* in a public subnet with a route table that routes internet traffic to an internet gateway
+       * Instances that need internet access *must be* in a private subnet with a route table that routes internet traffic
           to the NAT gateway
-        ![NAT Gateway](./NAT_gateway.png)
+       * ![NAT Gateway](./NAT_gateway.png)
 
 
 
