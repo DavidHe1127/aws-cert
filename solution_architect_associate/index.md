@@ -40,14 +40,34 @@
 
     #### NAT instance
       * You must disable source/destination checks on the `NAT instance`
-    
-    #### NAT gateway key points  
+      * Use `NAT instance` as a bastion server
+      * NAT instances **must be** in a public subnet
+      * There must be a route out of the private subnet to the `NAT instance` in order for this to work
+      * The amount of traffic that `NAT instances` can support depends on the instance size. If you are bottlenecking, increate the instance size
+      * `NAT instances` are behind a security group
+
+    #### NAT gateway key points
+       * Not associated with security groups
+       * Scale up to `10Gbps` automatically
+       * Automatically assigned a public ip address
+       * No need to disable Source/Destination Checks
+       * No need to patch - aws manages it for us
        * NAT gateway *must be* in a public subnet with a route table that routes internet traffic to an internet gateway
        * Instances that need internet access *must be* in a private subnet with a route table that routes internet traffic
           to the NAT gateway
        * In summary, two key points - `NAT Gateway` needs to be in public subnet **AND** it needs to be added to the main route table
+       * Internet traffic flow:
+       ```
+        Private instances ---> NAT Gateway(in public subnet) ---> Internet Gateway
+       ```
        * ![NAT Gateway](./NAT_gateway.png)
 
+    #### Network Access Control Lists
+       * You can only ever associate a subnet with one Network ACL
+       * By default, inbound/outbound rules are all denied when creating a private Network ACL
+
+    #### Security Groups
+       *
 
 
 ### Application Services
