@@ -70,7 +70,7 @@
        * Block IP addresses using NACL not security groups
 
        |  | Default NACL | Nondefault NACL |
-       | --- | --- | --- | --- |
+       | --- | --- | --- |
        | traffic  | Allow all inbound and outbound traffic | Denies all inbound and outbound traffic until you add rules |
 
     #### Security Groups
