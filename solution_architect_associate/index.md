@@ -19,6 +19,9 @@
 ### Database
 ### VPC
   * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
+  * All available AZs will be pre-defined for a region. VPC that resides in that region will span over all those AZs and you can later on create a subnet and specify which AZ it sits inside.
+  ![](./vpc_with_azs.png)
+
   * Each VPC can only allow one `Internet Gateway`
   * Default VPC has one default route table, internet gateway. Each EC2 instance has both a public and private ip address
   * The *first four* ip addresses and the *last* ip address in each subnet CIDR block are not available for you to use
@@ -87,6 +90,10 @@
        | Applies to an instance only if someone specifies the security group when launching the instance, or associates the security group with instance later on | Automatically applies to all instances in the subnets it's associated with (therefore, you don't have to rely on users to specify the security group) |
 
        * ![Security Diagram](./security.png)
+
+    #### ELB
+       * When creating a VPC, you need your application load balancers to always be in at least two AZs and they **must be** public.
+
 
 
 
