@@ -63,8 +63,15 @@
        * ![NAT Gateway](./NAT_gateway.png)
 
     #### Network Access Control Lists
-       * You can only ever associate a subnet with one Network ACL
-       * By default, inbound/outbound rules are all denied when creating a private Network ACL
+       * Each subnet **MUST BE** associated with a NACL. If not explicitly done, default NACL will be associated with your subnet
+       * One NACL can be associated with multiple subnets. But one subnet can be associated with only one NACL at a time. When you associate a network ACL with a subnet, the previous association is removed
+       * NACL can span across multiple AZs
+       * NACL contain a numbered list of rules that is evaluated in order, starting with lowest numbered rule
+       * Block IP addresses using NACL not security groups
+
+       |  | Default NACL | Nondefault NACL |
+       | --- | --- | --- | --- |
+       | traffic  | Allow all inbound and outbound traffic | Denies all inbound and outbound traffic until you add rules |
 
     #### Security Groups
        *
