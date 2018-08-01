@@ -74,7 +74,21 @@
        | traffic  | Allow all inbound and outbound traffic | Denies all inbound and outbound traffic until you add rules |
 
     #### Security Groups
-       *
+       * Act as a firewall for associated EC2 instances, controlling both inbound and outbound traffic at the instance level
+
+    #### Security Groups vs Network ACL
+
+       | Security Group | Network ACL |
+       | --- | --- |
+       | Operates at the instance level | Operates at the subnet level |
+       | Supports allow rules only | Supports allow rules and deny rules |
+       | stateful | stateless |
+       | We evaluate all rules before deciding whether to allow traffic | We process rules in numbered order when deciding whether to allow traffic |
+       | Applies to an instance only if someone specifies the security group when launching the instance, or associates the security group with instance later on | Automatically applies to all instances in the subnets it's associated with (therefore, you don't have to rely on users to specify the security group) |
+
+       * ![Security Diagram](./security.png)
+
+
 
 
 ### Application Services
