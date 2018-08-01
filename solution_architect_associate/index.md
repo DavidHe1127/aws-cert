@@ -42,7 +42,7 @@
       * You must disable source/destination checks on the `NAT instance`
       * Use `NAT instance` as a bastion server
       * NAT instances **must be** in a public subnet
-      * There must be a route out of the private subnet to the `NAT instance` in order for this to work
+      * There **must be** a route out of the private subnet to the `NAT instance` in order for this to work
       * The amount of traffic that `NAT instances` can support depends on the instance size. If you are bottlenecking, increate the instance size
       * `NAT instances` are behind a security group
 
