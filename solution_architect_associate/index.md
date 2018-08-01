@@ -19,7 +19,7 @@
 ### Database
 ### VPC
   * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
-  * All available AZs will be pre-defined for a region. VPC that resides in that region will span over all those AZs and you can later on create a subnet and specify which AZ it sits inside.
+  * All available AZs will be pre-defined for a particular region. VPC that resides in that region will span over all those AZs and you can later on create a subnet and specify which AZ it sits inside.
   ![](./vpc_with_azs.png)
 
   * Each VPC can only allow one `Internet Gateway`
