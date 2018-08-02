@@ -4,16 +4,39 @@
   * An `AZ` is simply a data center - designed as redundancies to protect data center from natural disasters for example.
   * `Edge locations` are endpoints for AWS which are used for content caching. Typically this consists of CloudFront - AWS CDN.
   * `Region` is geographic locations in the world which consists of **2 or more AZs**.
-  
+
   * `Glacier` for files archival
   * `RedShift` for data warehousing/business intelligence
   * Direct connect is a way of running a dedicated line from your data center or corporate head office directly into VPC.
   * `CloudTrail` - log changes to your aws environment i.e create a new EC2 instance, IAM.
   * `Trusted Advisor` - give you adivce on your security, how to save your money when using aws.
   * `Elastic Map Reduce` - big data
-  
+
 ### IAM
+  * Policies can be applied to Users, Groups and Roles.
+  * IAM is universal and global. **NOT** specific to any particular region.
+  * New Users have **NO** permissions when first created.
+  * Always setup Multifactor Auth on your root account.
+  * Power users are ones who have full access to AWS services but management of IAM users ,groups is not allowed to them
+
 ### S3/CDN/Glacier/CloudFront
+  * Amazon guarantees S3 standard 99.999999999% durability, 99.99% availability for s3 information - 11 * 9s% you will not lose your files saved on s3.
+  * Bucket policies act on bucket level while ACL acts on each individual file level.
+  * S3 is object-based and can only store files.
+  * Files can be from `0 Bytes to 5 TB` in size.
+  * Unlimited storage
+  * S3 is a universal namespace. That is, names must be unique gobally.
+  * Example bucket - `https://s3-eu-west-1.amazonaws.com/acloudguru`.
+  * Read after write consistency for `PUTS` of new objects.
+  * Eventual Consistency for overwrite `PUTS and DELETES` (can take some time to propagate).
+  * S3 Storage Classes/Tiers:
+    * `S3` (durable, immediately available, frequently accessed, multi-azs).
+    * `S3 - IA` (durable, immediately available, infrequently accessed, cheaper than `S3`).
+    * `S3 One Zone` (even cheaper than IA, but only in one az).
+    * `Glacier` (Archived data, where you can wait `3 - 5 hrs` before accessing).
+  * Once file's been uploaded successfully, you will receive `200` status code.
+  * Read S3 FAQs before taking the exam.
+
 ### EC2
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
