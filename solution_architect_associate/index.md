@@ -1,6 +1,17 @@
 # AWS Solution Architect Associate Exam tips and notes
 
 ### Services Overview
+  * An `AZ` is simply a data center - designed as redundancies to protect data center from natural disasters for example.
+  * `Edge locations` are endpoints for AWS which are used for content caching. Typically this consists of CloudFront - AWS CDN.
+  * `Region` is geographic locations in the world which consists of **2 or more AZs**.
+  
+  * `Glacier` for files archival
+  * `RedShift` for data warehousing/business intelligence
+  * Direct connect is a way of running a dedicated line from your data center or corporate head office directly into VPC.
+  * `CloudTrail` - log changes to your aws environment i.e create a new EC2 instance, IAM.
+  * Trusted Advisor - give you adivce on your security, how to save your money when using aws.
+  * Elastic Map Reduce - big data
+  
 ### IAM
 ### S3/CDN/Glacier/CloudFront
 ### EC2
