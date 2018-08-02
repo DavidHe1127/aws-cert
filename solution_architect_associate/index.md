@@ -9,8 +9,8 @@
   * `RedShift` for data warehousing/business intelligence
   * Direct connect is a way of running a dedicated line from your data center or corporate head office directly into VPC.
   * `CloudTrail` - log changes to your aws environment i.e create a new EC2 instance, IAM.
-  * Trusted Advisor - give you adivce on your security, how to save your money when using aws.
-  * Elastic Map Reduce - big data
+  * `Trusted Advisor` - give you adivce on your security, how to save your money when using aws.
+  * `Elastic Map Reduce` - big data
   
 ### IAM
 ### S3/CDN/Glacier/CloudFront
