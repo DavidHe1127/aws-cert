@@ -2,7 +2,7 @@
 
 ### Services Overview
   * An `AZ` is simply a data center - designed as redundancies to protect data center from natural disasters for example.
-  * `Edge locations` are endpoints for AWS which are used for content caching. Typically this consists of CloudFront - AWS CDN.
+  * `Edge locations` it's the location where content will be cached.
   * `Region` is geographic locations in the world which consists of **2 or more AZs**.
 
   * `Glacier` for files archival
@@ -36,6 +36,39 @@
     * `Glacier` (Archived data, where you can wait `3 - 5 hrs` before accessing).
   * Once file's been uploaded successfully, you will receive `200` status code.
   * Read S3 FAQs before taking the exam.
+  * Encryptions
+    * Client side Encryption
+    * Server side Encryption
+      * Server Side encryption with Amazon S3 Managed Keys - SSE-S3
+      * Server Side encryption with KMS - SSE-KMS (Additional charges than SSE-S3, provides audit trail of when your key was used and by whom)
+      * Server Side encryption with Customer Provided Keys - SSE-C
+    * **By default, all buckets are private as well as objects inside them**
+  * S3 Versioning
+    * Very big and prone-to-change file is **NOT** suitable for versioning.
+    * Stores all versions of an object (including all writes and even if you delete an object)
+    * Great backup tool
+    * Once enabled cannot be disabled can only be suspended
+    * Versioning's MFA Detele Capbility - provide another layer of security
+  * Cross Region Replication
+    * Versions must be turned on for both `source` and `destination` buckets.
+    * Regions must be unique.
+    * Existing files **NOT** replicated. It only affects subsequently updated files.
+    * Multiple buckets replication **NOT** allowed. i.e A replicates B replicates C.
+    * Delete markers are replicated.
+  * S3-IA & Glacier
+    * Archival!!! Cost is lower.
+    * Lifecycle management can be used in conjunction with versioning.
+    * Lifecycle management can be applied to current/previous versions.
+    * Actions can be done:
+      * Transition to the S - IA Storage class (30 days after the creation date).
+      * Archive to the Glacier Storage class (30 days after IA, if relevant).
+      * Permanently Delete.
+  * CloudFront
+    * Origin - Origin of all files that the CDN will distribute
+    * Distribution - This is the name given the CDN which consists of a collection of Edge Locations.
+    * Edge locations are **NOT** just READ only. You can write to them too.
+      i.e Put an object onto them - object will be synced back to original server.
+    * Objects will be cahced for the life of TTL. You can clear cached objects before TTL expires in exchange of charge.
 
 ### EC2
 ### Route53
@@ -142,3 +175,6 @@
 
 
 
+### Undone sessions
+  * 22
+  * 26
