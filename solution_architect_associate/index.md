@@ -69,6 +69,39 @@
     * Edge locations are **NOT** just READ only. You can write to them too.
       i.e Put an object onto them - object will be synced back to original server.
     * Objects will be cahced for the life of TTL. You can clear cached objects before TTL expires in exchange of charge.
+    * Allow multiple origins in the same distribution.
+    * **Can be configured to restrict viewer access to private contents via signed URLs or signed Cookies**
+  * S3 - Security & Encryption
+    * S3 buckets can be configured to create access logs which log all requests made to S3 bucket. This can be done to another bucket. Or even another bucket in a different account.
+    * In Transit - use SSL/TLS
+    * At Rest -
+      * Server Side Encryption
+        * S3 Managed Keys - SSE-S3
+        * AWS Key Management Service, Managed Keys - SSE-KMS (audit trail)
+        * Server Side Encryption with Customer Provided Keys - SSE-C
+      * Client Side Encryption
+        * Client encrypts data before syncing it to S3
+  * Storage Gateway
+    * A virtual appliance installed on your machines in data centre, which will replicate your information up to AWS S3 or Glacier
+    * 4 Types:
+      * File Gateway
+      * Volumes Gateway - virtual hard disk, block storage, allows to store OS, servers. Data written to these volumes can be asynchronously backed up as point-in-time snapshots of your volumes and stored in the cloud as Amazon EBS snapshots.
+        Snapshots are incremental backups that capture only changed blocks. All snapshots compressed.
+
+        Two types
+        * Stored Volumes
+        * Cached Volumes - Most data stored in S3, frequently accessed data stored on premises
+      * Tape Gateway - data archival solutions
+      * ![File Gateway](./file_gateway.png)
+      * ![Stored Gateway](./stored_volume.png)
+    * Tips:
+      * File Gateway: For flat files, stored directly on s3.
+      * Volume Gateway:
+        * Stored Volumes: Entire Dataset is stored on site and is async backed up to s3.
+        * Cached Volumes: Entire Dataset is stored on s3 and the most frequently accessed data is cahced on site
+      * Gateway Virtual Tape Library
+        * Used for **backup** and uses popular backup applications like NetBackup, Backup Exec, Veeam etc.
+
 
 ### EC2
 ### Route53
@@ -176,5 +209,4 @@
 
 
 ### Undone sessions
-  * 22
   * 26
