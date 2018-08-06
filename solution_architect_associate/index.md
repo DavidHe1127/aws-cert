@@ -66,7 +66,7 @@
   * CloudFront
     * Origin - Origin of all files that the CDN will distribute
     * Distribution - This is the name given the CDN which consists of a collection of Edge Locations.
-    * Edge locations are **NOT** just READ only. You can write to them too.
+    * Edge locations are **NOT** just READ only. You can write to them too (S3 Transfer Acceleration).
       i.e Put an object onto them - object will be synced back to original server.
     * Objects will be cahced for the life of TTL. You can clear cached objects before TTL expires in exchange of charge.
     * Allow multiple origins in the same distribution.
@@ -101,9 +101,51 @@
         * Cached Volumes: Entire Dataset is stored on s3 and the most frequently accessed data is cahced on site
       * Gateway Virtual Tape Library
         * Used for **backup** and uses popular backup applications like NetBackup, Backup Exec, Veeam etc.
-
+  * Snowball
+    * Import/Export - you send in your own disk to aws to sync data to aws via aws internal network
+    * snowball - aws provide you the appliances to the same thing as above
+      * Import to/Export from S3
+  * S3 Transfer Acceleration
+    * Uses the cloudfront edge network to accelerate your uploads to S3. Instead of uploading directly to your s3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that file to s3.
 
 ### EC2
+  Price types:
+
+  * `On Demand` - allows you to pay a fixed rate by the hour (or by the second) with no commitment (commitment - an amount of money that you have to pay, or the fact of promising to pay)
+  * `Reserved` - provide you with a capacity reservation, and offer a significant discount on the hourly charge for an instance. 1 to 3 yr terms
+    * Scheduled RIs are available to launch within the time window you reserve.
+  * `Spot` - enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times.
+    * Applications flexible start and end times.
+    * Applications that are only feasible at very low compute prices.
+    * Users with urgent need for large amounts of additional computing capacity.
+    * **If a Spot instance is terminated by Amazon EC2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, you will be charged for the complete hour in which the instance ran**
+  * `Dedicated Hosts` - Physical EC2 server dedicated for your use. Dedicated Hosts can help you reduce costs by allowing you to use your existing server-bound software instances.
+    * Might not support multi-tenant virtualization.
+    * Can be purchased on-demand (hourly)
+  ------------------------------------------
+  * EBS
+   * Allows you to create storage volumes and attach them to EC2. Once attached, you can create a file system on top of these volumes, run a database, or use them in any other way you would use a block device. EBS volumes are placed in a specific AZ where they are automatically replicated to protect you from the failure of a single component.
+   * Root volume - for os installations
+   * types
+    * General Purpose SSD (GP2) - balances both price and performance & `Can be a root volume` & **up to 10,000 IOPS**
+    * Provisioned IOPS SSD (IO1) - for I/O intensive applications such as large relational or NoSQL databases. & `Can be a root volume` & **more than 10,000 IOPS**
+    * Throughput Optimized HDD (ST1) - Big data, data warehouse, log processing and **CANNOT be a boot volume**
+    * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
+    * Magnetic - previous generation. `Can be a root volume`
+   ------------------------------------------
+   * By default, EBS volumes will be deleted on ec2 instance termination.
+   * Root volume is simply where you can boot your OS from.
+   * EBS Root Volume of your Default AMI **CANNOT** be encrypted. But this can be done when creating AMI's in the AWS console or using the api.
+   * Additional volumes can be encrypted.
+
+   LEC 34
+
+
+
+
+
+
+
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
   * Major difference between `Alias record` and `CNAME record` is: `Alias record` can resolve individual aws server
