@@ -26,6 +26,7 @@
   * Files can be from `0 Bytes to 5 TB` in size.
   * Unlimited storage
   * S3 is a universal namespace. That is, names must be unique gobally.
+  * You can upload files to S3 much faster by enabling multipart upload.
   * Example bucket - `https://s3-eu-west-1.amazonaws.com/acloudguru`.
   * Read after write consistency for `PUTS` of new objects.
   * Eventual Consistency for overwrite `PUTS and DELETES` (can take some time to propagate).
@@ -105,6 +106,8 @@
     * Import/Export - you send in your own disk to aws to sync data to aws via aws internal network
     * snowball - aws provide you the appliances to the same thing as above
       * Import to/Export from S3
+    * snowball edge - can run your lambda against them
+  * S3 Static Webistes - serverless, very cheap, scales automatically, host **STATIC** sites **ONLY**
   * S3 Transfer Acceleration
     * Uses the cloudfront edge network to accelerate your uploads to S3. Instead of uploading directly to your s3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that file to s3.
 
@@ -137,9 +140,13 @@
    * Root volume is simply where you can boot your OS from.
    * EBS Root Volume of your Default AMI **CANNOT** be encrypted. But this can be done when creating AMI's in the AWS console or using the api.
    * Additional volumes can be encrypted.
-
-   LEC 34
-
+   ------------------------------------------
+   * Security Group - any changes made to security group will take effect immediately.
+   * Stateful, any traffic you allow in is automatically allows out.
+   * Default security group allows all traffic from any ports in and out
+   * **ONLY** support allowed rules not denied rules.
+   * **CANNOT** block specific IP address. Use NACL to do it.
+   ------------------------------------------
 
 
 
