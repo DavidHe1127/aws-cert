@@ -148,11 +148,35 @@
    * **CANNOT** block specific IP address. Use NACL to do it.
    ------------------------------------------
    EBS
+   * Attached volume in use can be snapshot. But for root volume, instance needs to be stopped first
    ------------------------------------------
    #### RAID, Volumes & Snapshots
    * RAID - Redundant array of independent disks
    * Created by combining  multiple EBS volumes into one big EBS volume
    * RAID 5 **HIGHLY DISCOURAGED BY AWS**
+   * Problem - Snapshot excludes data held in the cache by applications and OS. This tends not to matter on a single volume, however using multiple volumes in a RAID array, this can be a problem due to interdependencies of the array.
+
+   Solution - take an application consistent snapshot.
+     Stop the application from writing to disk.
+     Flush all caches to the disk
+     How can we do this?
+      * Freeze the file system
+      * Unmount the RAID array
+      * Shutting down the associated EC2 instance
+   * **ONLY** unencrypted snapshots can be shared
+   ------------------------------------------
+   #### AMI
+   * Storage for the Root Device (Root Device Volume)
+    * Instance Store (EPHEMERAL STORAGE)
+    * EBS Backed Volume
+   * For EBS Volumes: The root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
+   * For Instance Store Volumes: The root device for an instance launched from the AMI is an instance store volume created from a template sotred in Amazon S3.
+   * Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data.
+   * EBS backed instances can be stopped. You will not lose the data on this instance if it is stopped.
+   * You can reboot both, you will not lose your data.
+   * By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume.
+   ------------------------------------------
+   ### ELB
 
 
 
