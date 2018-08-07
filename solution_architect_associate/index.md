@@ -187,6 +187,18 @@
    * If you need the IPV4 address of your end user, look for `X-Forwarded-For` header.
    * You are **NEVER** given an IP address to ELB. You only get **DNS Name**.
    * Read ELB FAQ for Classic Load Balancers.
+   ------------------------------------------
+   #### EC2 CloudWatch
+   * Basic and default metrics
+    * CPU related - credit balance, usage, cpu utilization
+    * Network related - network in/out and network packets in/out
+    * Disk related - read/write bytes, read/write ops
+    * Status check - at the instance/host level
+   ------------------------------------------
+   #### EC2 IAM roles
+   * You can attach IAM roles to running EC2 instances and they will take effect immediately
+   *
+
 
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
