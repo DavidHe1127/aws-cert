@@ -185,9 +185,8 @@
     * Classic Load Balancers(ELB) - serve bothj HTTP/HTTPS and TCP
    * 504 Error means the gateway has timed out. This means that the application not responding within the idle timeout period
    * If you need the IPV4 address of your end user, look for `X-Forwarded-For` header.
-
-
-
+   * You are **NEVER** given an IP address to ELB. You only get **DNS Name**.
+   * Read ELB FAQ for Classic Load Balancers.
 
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
