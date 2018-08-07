@@ -160,11 +160,11 @@
      Stop the application from writing to disk.
      Flush all caches to the disk
      How can we do this?
-     
+
      * Freeze the file system
      * Unmount the RAID array
      * Shutting down the associated EC2 instance
-     
+
    * **ONLY** unencrypted snapshots can be shared
    ------------------------------------------
    #### AMI
@@ -178,8 +178,13 @@
    * You can reboot both, you will not lose your data.
    * By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume.
    ------------------------------------------
-   ### ELB
-
+   #### ELB
+   * 3 types
+    * Application Load Balancers - serve HTTP(S) traffic, operates at layer 7
+    * Network Load Balancers - serve TCP traffic, operates at layer 4
+    * Classic Load Balancers(ELB) - serve bothj HTTP/HTTPS and TCP
+   * 504 Error means the gateway has timed out. This means that the application not responding within the idle timeout period
+   * If you need the IPV4 address of your end user, look for `X-Forwarded-For` header.
 
 
 
