@@ -126,7 +126,7 @@
     * Might not support multi-tenant virtualization.
     * Can be purchased on-demand (hourly)
   ------------------------------------------
-  * EBS
+  #### EBS
    * Allows you to create storage volumes and attach them to EC2. Once attached, you can create a file system on top of these volumes, run a database, or use them in any other way you would use a block device. EBS volumes are placed in a specific AZ where they are automatically replicated to protect you from the failure of a single component.
    * Root volume - for os installations
    * types
@@ -147,7 +147,11 @@
    * **ONLY** support allowed rules not denied rules.
    * **CANNOT** block specific IP address. Use NACL to do it.
    ------------------------------------------
-
+   EBS
+   ------------------------------------------
+   #### RAID, Volumes & Snapshots
+   * RAID - Redundant array of independent disks
+   * RAID 5 **HIGHLY DISCOURAGED BY AWS**
 
 
 
