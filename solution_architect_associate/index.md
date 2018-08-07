@@ -104,7 +104,7 @@
         * Used for **backup** and uses popular backup applications like NetBackup, Backup Exec, Veeam etc.
   * Snowball
     * Import/Export - you send in your own disk to aws to sync data to aws via aws internal network
-    * snowball - aws provide you the appliances to the same thing as above
+    * snowball - aws provide you the appliances to do the same thing as above
       * Import to/Export from S3
     * snowball edge - can run your lambda against them
   * S3 Static Webistes - serverless, very cheap, scales automatically, host **STATIC** sites **ONLY**
@@ -160,9 +160,11 @@
      Stop the application from writing to disk.
      Flush all caches to the disk
      How can we do this?
-      * Freeze the file system
-      * Unmount the RAID array
-      * Shutting down the associated EC2 instance
+     
+     * Freeze the file system
+     * Unmount the RAID array
+     * Shutting down the associated EC2 instance
+     
    * **ONLY** unencrypted snapshots can be shared
    ------------------------------------------
    #### AMI
