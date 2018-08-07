@@ -151,6 +151,7 @@
    ------------------------------------------
    #### RAID, Volumes & Snapshots
    * RAID - Redundant array of independent disks
+   * Created by combining  multiple EBS volumes into one big EBS volume
    * RAID 5 **HIGHLY DISCOURAGED BY AWS**
 
 
