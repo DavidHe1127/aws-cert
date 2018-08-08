@@ -177,6 +177,7 @@
    * EBS backed instances can be stopped. You will not lose the data on this instance if it is stopped.
    * You can reboot both, you will not lose your data.
    * By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume.
+   * ![](./ami_snapshot_ec2_volume.png)
    ------------------------------------------
    #### ELB
    * 3 types
@@ -187,6 +188,7 @@
    * If you need the IPV4 address of your end user, look for `X-Forwarded-For` header.
    * You are **NEVER** given an IP address to ELB. You only get **DNS Name**.
    * Read ELB FAQ for Classic Load Balancers.
+   * [How ELB works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
    ------------------------------------------
    #### EC2 CloudWatch
    * Basic and default metrics
@@ -197,8 +199,22 @@
    ------------------------------------------
    #### EC2 IAM roles
    * You can attach IAM roles to running EC2 instances and they will take effect immediately
-   *
-
+   ------------------------------------------
+   #### EC2 Instance Metadata
+   * `curl http://169.254.169.254/latest/meta-data/`
+   ------------------------------------------
+   #### Auto-Scaling Group
+   * ![auto-scaling-group](./auto_scaling_group.png)
+   ------------------------------------------
+   #### EC2 Placement Group
+   * If you come across Placement Group without explicit name in the exam, it is `Clusted Placement Group`.
+   * It's used for applications that need **low network latency** and **high network throughput**.
+   * Clusted Placement Group **CANNOT** be spanned across multiple AZs. While Spread Placement Group can.
+   * Placement Group name is unique within your aws account.
+   * Certain types of instances can be launched in a placement Group (Compute Optimized, GPU, Memory Optimized, Storage Optimized).
+   * AWS recommend homogenous instances within placement groups.
+   * You cannot merge placement groups.
+   * You cannot move an existing instance into a placement group. You can create an AMI from your existing instance, and then launch a new instance from the AMI into a placment group.
 
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
