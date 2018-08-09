@@ -215,6 +215,12 @@
    * AWS recommend homogenous instances within placement groups.
    * You cannot merge placement groups.
    * You cannot move an existing instance into a placement group. You can create an AMI from your existing instance, and then launch a new instance from the AMI into a placment group.
+   ------------------------------------------
+   ### EFS
+   * EFS can be mounted to more than one EC2 instance
+   * Only pay for the storage ou use (no pre-provisioning required)
+   * Data is stored across multiple AZ's within a region
+   * Block-based storage
 
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
