@@ -136,7 +136,7 @@
     * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
     * Magnetic - previous generation. `Can be a root volume`
    ------------------------------------------
-   * By default, EBS volumes will be deleted on ec2 instance termination.
+   * By default, EBS volumes will be deleted on ec2 instance termination. But can be specified to keep the volume
    * Root volume is simply where you can boot your OS from.
    * EBS Root Volume of your Default AMI **CANNOT** be encrypted. But this can be done when creating AMI's in the AWS console or using the api.
    * Additional volumes can be encrypted.
@@ -168,6 +168,7 @@
    * **ONLY** unencrypted snapshots can be shared
    ------------------------------------------
    #### AMI
+   * It's region sepcific
    * Storage for the Root Device (Root Device Volume)
     * Instance Store (EPHEMERAL STORAGE)
     * EBS Backed Volume
@@ -196,6 +197,9 @@
     * Network related - network in/out and network packets in/out
     * Disk related - read/write bytes, read/write ops
     * Status check - at the instance/host level
+   * Standard Monitoring = every 5 mins
+   * Detaild Monitoring = every 1 min
+   * Events - helps you to respond to state changes in your AWS resources i.e EC2 comes on line.
    ------------------------------------------
    #### EC2 IAM roles
    * You can attach IAM roles to running EC2 instances and they will take effect immediately
@@ -216,11 +220,17 @@
    * You cannot merge placement groups.
    * You cannot move an existing instance into a placement group. You can create an AMI from your existing instance, and then launch a new instance from the AMI into a placment group.
    ------------------------------------------
-   ### EFS
+   #### EFS
    * EFS can be mounted to more than one EC2 instance
    * Only pay for the storage ou use (no pre-provisioning required)
    * Data is stored across multiple AZ's within a region
    * Block-based storage
+   ------------------------------------------
+   #### Lambda
+   * Scales out automatically
+   * functions are independent, 1 event = 1 function
+   * serverless
+   * serverless services include: `S3, API Gateway, Lambda, DynamoDB`
 
 ### Route53
   * No pre-defined IPv4 address on ELB. It only has a public DNS name
