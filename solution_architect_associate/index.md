@@ -245,6 +245,46 @@
     * Geolocation - fulfil traffic based on end users geolocations
 
 ### Database
+  #### RDS
+  * If EC2 cannot talk to RDS, chances are RDS security group does not allow inbound traffic from the security group where your EC2 instance is in.
+  ------------------------------------------
+  #### Backup
+  * Automated Backups
+    * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a secon, within the retention period.
+    * Enabled by default
+    * backup data is stored in S3 and you get free storage space equal to the size of your database
+    * So if you have an RDS instance of 10Gb, you will get 10Gb worth of storage.
+    * Backups are taken within a defined window. During the backup window, storage I/O may be suspended while your data is being backed up and you may experience elevated latency.
+    * backups gone when you delete the original RDS instance.
+  * Snapshots
+    * Done manually.
+    * Backups stored even after you delete the original RDS instance.
+  * When you restore either an Automatic Backup or a manual Snapshot, the restored version of the database will be a new RDS instance with a new DNS endpoint.
+  * Currently, encrypting an existing DB Instance is not supported. To use Amazon RDS encryption for an exisitng database, you must first create a snapshot, make a copy of that snpashot and encrypt the copy.
+  ------------------------------------------
+  #### Multi-AZ
+  * Multi-AZ allows you to have an exact copy of your production database in another AZ. AWS handles the replication for you, so when your production database is written to, this write will automatically be **SYNCED** to the stand by database.
+  In the event of planned database maintenance, DB Instance failure, or an AZ failure, RDS will automatically failover to the standby so that database operations can resume quickly without administrative intervention.
+  * **Multi-AZ is for Disaster Recovery only**. For performance improvement, you need `Read Replicas`.
+  * ![](./rds-multi-az.png)
+  ------------------------------------------
+  #### Read Replica
+  * Read replicas allow you to have a read-only copy of your production database. This is achieved by using **ASYNC** replication from the primary RDS instance to the read replica. **You use read replicas primarily for very read-heavy database workloads**.
+  * You **MUST** have automatic backups turned on in order to deploy a read replica.
+  * You can have up to 5 read replica copies of any database.
+  * You can have read replicas of read replicas (but watch out for latency).
+  * Each read replica will have its own DNS endpoint.
+  * You can have read replicas that have Multi-AZ.
+  * You can create read replicas of Multi-AZ source databases.
+  * Read replicas can be promoted to be their own databases. This breaks the replication.
+  * You can have a read replica in a second region.
+  * ![](./read-replica.png)
+
+
+
+
+
+
 ### VPC
   * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
   * All available AZs will be pre-defined for a particular region. VPC that resides in that region will span over all those AZs and you can later on create a subnet and specify which AZ it sits inside.
