@@ -279,10 +279,24 @@
   * Read replicas can be promoted to be their own databases. This breaks the replication.
   * You can have a read replica in a second region.
   * ![](./read-replica.png)
-
-
-
-
+  ------------------------------------------
+  #### DynamoDB
+  * Use DynamoDB if:
+    * Your db has massive reads and little writes
+    * High scalability & performance
+    * No SQL joins
+  * DynamoDB scaling vs RDS scaling
+  * DynamoDB has `push button` scaling which you can scale the db instance up/down by changing capacities and press `save` button,
+    There is no down time. While in terms of RDS scaling, you will inevitably have down time making it a bit hard to scale.
+  ------------------------------------------
+  #### RedShift
+  * Data warehouse service in the cloud.
+  * Really really fast and cheap.
+  * Columer storage.
+  ------------------------------------------
+  #### Elasticache
+  * Typically a particular database which is under a lot of stress/load, Elasticache is a good choice if your database is particularly read heavy and not prone to frequent changing.
+  * Redshift is a good answer if the reason your database is feeling stress is because management keep running OLAP transactions on it etc.
 
 
 ### VPC
