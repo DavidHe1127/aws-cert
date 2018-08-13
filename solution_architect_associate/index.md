@@ -298,6 +298,10 @@
   * Typically a particular database which is under a lot of stress/load, Elasticache is a good choice if your database is particularly read heavy and not prone to frequent changing.
   * Redshift is a good answer if the reason your database is feeling stress is because management keep running OLAP transactions on it etc.
   ------------------------------------------
+  #### Aurora
+  * It provides up to five times better performance than MySQL at a price point one tenth of a commercial database while delivering similar performance and availability.
+  * Read Aurora FAQs
+  ------------------------------------------
   #### Summary
   * RDS - OLTP(online transaction processing)
   * RedShift - OLAP(Online Analytical processing)
@@ -328,7 +332,7 @@
       * Security Group does not span across multiple vpcs. You must specify the VPC the security group is created in
 
     #### NAT instance
-      * You must disable source/destination checks on the `NAT instance`
+      * You **MUST** disable source/destination checks on the `NAT instance`
       * Use `NAT instance` as a bastion server
       * NAT instances **must be** in a public subnet
       * There **must be** a route out of the private subnet to the `NAT instance` in order for this to work
@@ -341,8 +345,9 @@
        * Automatically assigned a public ip address
        * No need to disable Source/Destination Checks
        * No need to patch - aws manages it for us
-       * NAT gateway *must be* in a public subnet with a route table that routes internet traffic to an internet gateway
-       * Instances that need internet access *must be* in a private subnet with a route table that routes internet traffic
+       * NAT gateway **MUST** in a public subnet with a route table that routes internet traffic to an internet gateway
+       * In your route table, add `0.0.0.0/0` as destination and `NAT Gateway ID` as target
+       * Instances that need internet access **MUST** be in a private subnet with a route table that routes internet traffic
           to the NAT gateway
        * In summary, two key points - `NAT Gateway` needs to be in public subnet **AND** it needs to be added to the main route table
        * Internet traffic flow:
