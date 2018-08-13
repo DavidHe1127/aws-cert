@@ -297,6 +297,10 @@
   #### Elasticache
   * Typically a particular database which is under a lot of stress/load, Elasticache is a good choice if your database is particularly read heavy and not prone to frequent changing.
   * Redshift is a good answer if the reason your database is feeling stress is because management keep running OLAP transactions on it etc.
+  ------------------------------------------
+  #### Summary
+  * RDS - OLTP(online transaction processing)
+  * RedShift - OLAP(Online Analytical processing)
 
 
 ### VPC
