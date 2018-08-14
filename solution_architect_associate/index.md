@@ -386,18 +386,54 @@
        * When creating a VPC, you need your application load balancers to always be in at least two AZs and they **must be** public.
 
 
-
-
-
 ### Application Services
   #### SQS
+  * It is a pull-based and distributed message queueing system.
+  * Decouple the components of an application.
+  * Messages can contain up to *256KB* of text in any format.
+  * Two types - standard vs FIFO (First-In-First-Out)
+  * Messages can be kept in the queue from *1 minute to 14 days*.
+  * Default retention period is *4 days*.
+  * Guarantees that your message will be processed at least once.
+  * Understand `visibility timeout`.
+  * Default visibility timeout is 30 seconds.
+  * Increase it if your task takes more than 30 seconds.
+  * Maximum is 12 hours.
+  * Long polling doesn't return a response until a message arrives in the message queue, or the long poll times out
+  * As such, long polling can save you money.
+  ------------------------------------------
   #### SWF
+  * Workers are programs that interact with SWF to get tasks, process received tasks and return the results
+  * Decider is a program that controls the coordination of tasks, i.e their ordering, concurrency, and scheduling according to the application logic.
+  * **Task is only assigned once and is never duplicated**
+  * task-oriented API
+  * keeps track of all the tasks and events in an application
+  ------------------------------------------
   #### SNS
+  * Push-based devliery (no polling)
+  ------------------------------------------
   #### Elastic Transcoder
+  * Media content transcoder i.e format conversion, thumbnail generation
+  ------------------------------------------
   #### API Gateway
-  #### Kinesis 101
-
-
+  * Low cost & efficient
+  * scales automatically
+  * throttle requests to prevent attacks
+  * connect to `CloudWatch` to log all requests
+  ------------------------------------------
+  #### Kinesis
+  * For streaming data *consumption*
+    Purchase from online stores(think amazon.com), stock prices, game data, iOT, social network data,
+    Geospatial data(uber)
+  * 3 types
+    * Kinesis stream - shards
+    * Kinesis firehose - automated operations, No shards
+    * kinesis analytics - run sql query against streaming data for analytics purpose
+  ![kinesis_stream](./kinesis_stream.png)
+  ![kinesis_firehose](./kinesis_hose.png)
 
 ### Undone sessions
   * 26
+  * aurora
+  * Kinesis lab
+  * application services summary
