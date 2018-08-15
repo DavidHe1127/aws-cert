@@ -35,6 +35,7 @@
     * `S3 - IA` (durable, immediately available, infrequently accessed, cheaper than `S3`).
     * `S3 One Zone` (even cheaper than IA, but only in one az).
     * `Glacier` (Archived data, where you can wait `3 - 5 hrs` before accessing).
+    * `S3 Reduced Redundancy Storage` (enables customers to store noncritical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage).
   * Once file's been uploaded successfully, you will receive `200` status code.
   * Read S3 FAQs before taking the exam.
   * Encryptions
@@ -125,6 +126,7 @@
   * `Dedicated Hosts` - Physical EC2 server dedicated for your use. Dedicated Hosts can help you reduce costs by allowing you to use your existing server-bound software instances.
     * Might not support multi-tenant virtualization.
     * Can be purchased on-demand (hourly)
+    * 20 instances per region by default. Contact aws if you need to run more
   ------------------------------------------
   #### EBS
    * Allows you to create storage volumes and attach them to EC2. Once attached, you can create a file system on top of these volumes, run a database, or use them in any other way you would use a block device. EBS volumes are placed in a specific AZ where they are automatically replicated to protect you from the failure of a single component.
