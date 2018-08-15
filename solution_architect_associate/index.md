@@ -379,6 +379,7 @@
        | stateful | stateless |
        | We evaluate all rules before deciding whether to allow traffic | We process rules in numbered order when deciding whether to allow traffic |
        | Applies to an instance only if someone specifies the security group when launching the instance, or associates the security group with instance later on | Automatically applies to all instances in the subnets it's associated with (therefore, you don't have to rely on users to specify the security group) |
+       | By default, no inbound traffic is allowed and all outbound traffic is allowed | By default, all inbound/outbound traffic is allowed |
 
        * ![Security Diagram](./security.png)
 
