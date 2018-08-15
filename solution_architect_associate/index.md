@@ -130,11 +130,11 @@
    * Allows you to create storage volumes and attach them to EC2. Once attached, you can create a file system on top of these volumes, run a database, or use them in any other way you would use a block device. EBS volumes are placed in a specific AZ where they are automatically replicated to protect you from the failure of a single component.
    * Root volume - for os installations
    * types
-    * General Purpose SSD (GP2) - balances both price and performance & `Can be a root volume` & **up to 10,000 IOPS**
-    * Provisioned IOPS SSD (IO1) - for I/O intensive applications such as large relational or NoSQL databases. & `Can be a root volume` & **more than 10,000 IOPS**
-    * Throughput Optimized HDD (ST1) - Big data, data warehouse, log processing and **CANNOT be a boot volume**
-    * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
-    * Magnetic - previous generation. `Can be a root volume`
+     * General Purpose SSD (GP2) - balances both price and performance & `Can be a root volume` & **up to 10,000 IOPS**
+     * Provisioned IOPS SSD (IO1) - for I/O intensive applications such as large relational or NoSQL databases. & `Can be a root volume` & **more than 10,000 IOPS**
+     * Throughput Optimized HDD (ST1) - Big data, data warehouse, log processing and **CANNOT be a boot volume**
+     * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
+     * Magnetic - previous generation. `Can be a root volume`
    ------------------------------------------
    * By default, EBS volumes will be deleted on ec2 instance termination. But can be specified to keep the volume
    * Root volume is simply where you can boot your OS from.
@@ -170,8 +170,8 @@
    #### AMI
    * It's region sepcific
    * Storage for the Root Device (Root Device Volume)
-    * Instance Store (EPHEMERAL STORAGE)
-    * EBS Backed Volume
+     * Instance Store (EPHEMERAL STORAGE)
+     * EBS Backed Volume
    * For EBS Volumes: The root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
    * For Instance Store Volumes: The root device for an instance launched from the AMI is an instance store volume created from a template sotred in Amazon S3.
    * Instance store cannot be detached from EC2 instances.
@@ -194,10 +194,10 @@
    ------------------------------------------
    #### EC2 CloudWatch
    * Basic and default metrics
-    * CPU related - credit balance, usage, cpu utilization
-    * Network related - network in/out and network packets in/out
-    * Disk related - read/write bytes, read/write ops
-    * Status check - at the instance/host level
+     * CPU related - credit balance, usage, cpu utilization
+     * Network related - network in/out and network packets in/out
+     * Disk related - read/write bytes, read/write ops
+     * Status check - at the instance/host level
    * Standard Monitoring = every 5 mins
    * Detaild Monitoring = every 1 min
    * Events - helps you to respond to state changes in your AWS resources i.e EC2 comes on line.
@@ -239,11 +239,11 @@
     Another difference is `Alias record` is free while `CNAME record` costs money
     Always choose `Alias Record` over a `CNAME record`
   * Different routing policies
-    * Simple
-    * Weighted - A/B Testing. New site takes 20% traffic and old site takes 80% traffic
-    * Latency - Server with the lowest latency will be used to serve traffic
-    * Failover - DR site only comes online when health check on production site fails
-    * Geolocation - fulfil traffic based on end users geolocations
+     * Simple
+     * Weighted - A/B Testing. New site takes 20% traffic and old site takes 80% traffic
+     * Latency - Server with the lowest latency will be used to serve traffic
+     * Failover - DR site only comes online when health check on production site fails
+     * Geolocation - fulfil traffic based on end users geolocations
 
 ### Database
   #### RDS
@@ -251,7 +251,7 @@
   ------------------------------------------
   #### Backup
   * Automated Backups
-    * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a secon, within the retention period.
+    * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a second, within the retention period.
     * Enabled by default
     * backup data is stored in S3 and you get free storage space equal to the size of your database
     * So if you have an RDS instance of 10Gb, you will get 10Gb worth of storage.
@@ -380,18 +380,61 @@
        | stateful | stateless |
        | We evaluate all rules before deciding whether to allow traffic | We process rules in numbered order when deciding whether to allow traffic |
        | Applies to an instance only if someone specifies the security group when launching the instance, or associates the security group with instance later on | Automatically applies to all instances in the subnets it's associated with (therefore, you don't have to rely on users to specify the security group) |
+       | By default, no inbound traffic is allowed and all outbound traffic is allowed | By default, all inbound/outbound traffic is allowed |
 
        * ![Security Diagram](./security.png)
 
     #### ELB
        * When creating a VPC, you need your application load balancers to always be in at least two AZs and they **must be** public.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62be4b4c929f88405e82b0aa1249ebf472dd3119
 ### Application Services
   #### SQS
+  * It is a pull-based and distributed message queueing system.
+  * Decouple the components of an application.
+  * Messages can contain up to *256KB* of text in any format.
+  * Two types - standard vs FIFO (First-In-First-Out)
+  * Messages can be kept in the queue from *1 minute to 14 days*.
+  * Default retention period is *4 days*.
+  * Guarantees that your message will be processed at least once.
+  * Understand `visibility timeout`.
+  * Default visibility timeout is 30 seconds.
+  * Increase it if your task takes more than 30 seconds.
+  * Maximum is 12 hours.
+  * Long polling doesn't return a response until a message arrives in the message queue, or the long poll times out
+  * As such, long polling can save you money.
+  ------------------------------------------
   #### SWF
+  * Workers are programs that interact with SWF to get tasks, process received tasks and return the results
+  * Decider is a program that controls the coordination of tasks, i.e their ordering, concurrency, and scheduling according to the application logic.
+  * **Task is only assigned once and is never duplicated**
+  * task-oriented API
+  * keeps track of all the tasks and events in an application
+  ------------------------------------------
   #### SNS
+  * Push-based devliery (no polling)
+  ------------------------------------------
   #### Elastic Transcoder
+  * Media content transcoder i.e format conversion, thumbnail generation
+  ------------------------------------------
+  #### Kinesis
+  * For streaming data *consumption*
+    Purchase from online stores(think amazon.com), stock prices, game data, iOT, social network data,
+    Geospatial data(uber)
+  * 3 types
+    * Kinesis stream - shards
+    * Kinesis firehose - automated operations, No shards
+    * kinesis analytics - run sql query against streaming data for analytics purpose
+  ![kinesis_stream](./kinesis_stream.png)
+  ![kinesis_firehose](./kinesis_hose.png)
   #### API Gateway
+  * Low cost & efficient
+  * scales automatically
+  * throttle requests to prevent attacks
+  * connect to `CloudWatch` to log all requests
   #### Kinesis 101
 
 ### Extra Exam Tips
@@ -405,7 +448,8 @@
     * Orchestration Service that uses Chef
     * Look for the term `chef, recipes, cookbook` and think OpsWorks
 
-
-
 ### Undone sessions
   * 26
+  * aurora
+  * Kinesis lab
+  * application services summary
