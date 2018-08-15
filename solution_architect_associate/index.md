@@ -174,6 +174,7 @@
     * EBS Backed Volume
    * For EBS Volumes: The root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
    * For Instance Store Volumes: The root device for an instance launched from the AMI is an instance store volume created from a template sotred in Amazon S3.
+   * Instance store cannot be detached from EC2 instances.
    * Instance store backed instances cannot be stopped. If the underlying host fails, you will lose your data.
    * EBS backed instances can be stopped. You will not lose the data on this instance if it is stopped.
    * You can reboot both, you will not lose your data.
@@ -385,10 +386,6 @@
     #### ELB
        * When creating a VPC, you need your application load balancers to always be in at least two AZs and they **must be** public.
 
-
-
-
-
 ### Application Services
   #### SQS
   #### SWF
@@ -396,6 +393,17 @@
   #### Elastic Transcoder
   #### API Gateway
   #### Kinesis 101
+
+### Extra Exam Tips
+  Kinesis
+    * Used to consume big data
+    * Stream large amounts of social media, news feeds logs etc into the cloud
+  Large amount of data processing
+    * Reshift for business intelligence
+    * Elastic Map Reduce for Big Data Processing
+  OpsWorks
+    * Orchestration Service that uses Chef
+    * Look for the term `chef, recipes, cookbook` and think OpsWorks
 
 
 
