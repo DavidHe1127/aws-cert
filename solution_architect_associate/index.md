@@ -250,7 +250,7 @@
   ------------------------------------------
   #### Backup
   * Automated Backups
-    * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a secon, within the retention period.
+    * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a second, within the retention period.
     * Enabled by default
     * backup data is stored in S3 and you get free storage space equal to the size of your database
     * So if you have an RDS instance of 10Gb, you will get 10Gb worth of storage.
