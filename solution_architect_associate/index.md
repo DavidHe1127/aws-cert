@@ -130,11 +130,11 @@
    * Allows you to create storage volumes and attach them to EC2. Once attached, you can create a file system on top of these volumes, run a database, or use them in any other way you would use a block device. EBS volumes are placed in a specific AZ where they are automatically replicated to protect you from the failure of a single component.
    * Root volume - for os installations
    * types
-    * General Purpose SSD (GP2) - balances both price and performance & `Can be a root volume` & **up to 10,000 IOPS**
-    * Provisioned IOPS SSD (IO1) - for I/O intensive applications such as large relational or NoSQL databases. & `Can be a root volume` & **more than 10,000 IOPS**
-    * Throughput Optimized HDD (ST1) - Big data, data warehouse, log processing and **CANNOT be a boot volume**
-    * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
-    * Magnetic - previous generation. `Can be a root volume`
+     * General Purpose SSD (GP2) - balances both price and performance & `Can be a root volume` & **up to 10,000 IOPS**
+     * Provisioned IOPS SSD (IO1) - for I/O intensive applications such as large relational or NoSQL databases. & `Can be a root volume` & **more than 10,000 IOPS**
+     * Throughput Optimized HDD (ST1) - Big data, data warehouse, log processing and **CANNOT be a boot volume**
+     * Cold HDD (SC1) - Lowest Cost Storage for infrequently accessed workloads, file server
+     * Magnetic - previous generation. `Can be a root volume`
    ------------------------------------------
    * By default, EBS volumes will be deleted on ec2 instance termination. But can be specified to keep the volume
    * Root volume is simply where you can boot your OS from.
@@ -170,8 +170,8 @@
    #### AMI
    * It's region sepcific
    * Storage for the Root Device (Root Device Volume)
-    * Instance Store (EPHEMERAL STORAGE)
-    * EBS Backed Volume
+     * Instance Store (EPHEMERAL STORAGE)
+     * EBS Backed Volume
    * For EBS Volumes: The root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
    * For Instance Store Volumes: The root device for an instance launched from the AMI is an instance store volume created from a template sotred in Amazon S3.
    * Instance store backed instances cannot be stopped. If the underlying host fails, you will lose your data.
@@ -193,10 +193,10 @@
    ------------------------------------------
    #### EC2 CloudWatch
    * Basic and default metrics
-    * CPU related - credit balance, usage, cpu utilization
-    * Network related - network in/out and network packets in/out
-    * Disk related - read/write bytes, read/write ops
-    * Status check - at the instance/host level
+     * CPU related - credit balance, usage, cpu utilization
+     * Network related - network in/out and network packets in/out
+     * Disk related - read/write bytes, read/write ops
+     * Status check - at the instance/host level
    * Standard Monitoring = every 5 mins
    * Detaild Monitoring = every 1 min
    * Events - helps you to respond to state changes in your AWS resources i.e EC2 comes on line.
@@ -238,11 +238,11 @@
     Another difference is `Alias record` is free while `CNAME record` costs money
     Always choose `Alias Record` over a `CNAME record`
   * Different routing policies
-    * Simple
-    * Weighted - A/B Testing. New site takes 20% traffic and old site takes 80% traffic
-    * Latency - Server with the lowest latency will be used to serve traffic
-    * Failover - DR site only comes online when health check on production site fails
-    * Geolocation - fulfil traffic based on end users geolocations
+     * Simple
+     * Weighted - A/B Testing. New site takes 20% traffic and old site takes 80% traffic
+     * Latency - Server with the lowest latency will be used to serve traffic
+     * Failover - DR site only comes online when health check on production site fails
+     * Geolocation - fulfil traffic based on end users geolocations
 
 ### Database
   #### RDS
