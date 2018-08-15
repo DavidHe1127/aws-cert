@@ -387,10 +387,6 @@
     #### ELB
        * When creating a VPC, you need your application load balancers to always be in at least two AZs and they **must be** public.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 62be4b4c929f88405e82b0aa1249ebf472dd3119
 ### Application Services
   #### SQS
   * It is a pull-based and distributed message queueing system.
@@ -443,29 +439,39 @@
 
 ### Extra Exam Tips
   Kinesis
-    * Used to consume big data
-    * Stream large amounts of social media, news feeds logs etc into the cloud
+  * Used to consume big data
+  * Stream large amounts of social media, news feeds logs etc into the cloud
   Large amount of data processing
-    * Reshift for business intelligence
-    * Elastic Map Reduce for Big Data Processing
+  * Reshift for business intelligence
+  * Elastic Map Reduce for Big Data Processing
   OpsWorks
-    * Orchestration Service that uses Chef
-    * Look for the term `chef, recipes, cookbook` and think OpsWorks
+  * Orchestration Service that uses Chef
+  * Look for the term `chef, recipes, cookbook` and think OpsWorks
   EBS Backed vs Instance Store
-    * EBS Backed = Store Data Longt Term
-    * Instance Store - Shouldn't be used for long-term data storage
+  * EBS Backed = Store Data Longt Term
+  * Instance Store - Shouldn't be used for long-term data storage
   ------------------------------------------
   AWS Organizations
-    * An account management service that enables you to consolidate multiple AWS accounts into an organisation that you create and centrally manage.
-    * Save money by using consolidated billing
-    * Unused reserved instances for EC2 are applied across the group
-    * CloudTrail is on a per account and per region basis but can be aggregated into a single bucket in the paying account.
+  * An account management service that enables you to consolidate multiple AWS accounts into an organisation that you create and centrally manage.
+  * Save money by using consolidated billing
+  * Unused reserved instances for EC2 are applied across the group
+  * CloudTrail is on a per account and per region basis but can be aggregated into a single bucket in the paying account.
   ------------------------------------------
   Cross Account Access
-    * Make it easier for you to work productively within a multi-account (or multi-role) AWS environment by making it easy for you to switch roles within the aws management console. You can now sign in to the console using your IAM user name then switch the console to manage another account without having to enter (or remember) another username or password.
+  * Make it easier for you to work productively within a multi-account (or multi-role) AWS environment by making it easy for you to switch roles within the aws management console. You can now sign in to the console using your IAM user name then switch the console to manage another account without having to enter (or remember) another username or password.
   ------------------------------------------
   Resource Groups
-    * Make it easy to group your resources using the tags that are assigned to them You can group resources that share one or more tags.
+  * Make it easy to group your resources using the tags that are assigned to them You can group resources that share one or more tags.
+  ------------------------------------------
+  VPC Peering
+  * VPC peering connection connects your own VPCs, or with a VPC in another AWS account within a *single region*. Cannot do it across multi-region.
+  * AWS uses the existing infrastructure of a VPC to create a VPC peering connection; It's neither a gateway nor a VPN connection, and does not rely on a separate piece of physical hardware. There is no single point of failure for commmunication or a bandwidth bottleneck.
+  * You *CANNOT* create a VPC peering connection between VPCs that have matching or overlapping CIDR blocks.
+  ![](./no_vpc_peering_for_cidr_blocks_overlapping.png)
+  ------------------------------------------
+  Direct Connect
+  * AWS `Direct Connect` does *NOT* involve the internet; instead, it uses dedicated, private network connections between your intranet and VPC.
+  * Takes `3-4` months to be setup.
 
 ### Undone sessions
   * 26
