@@ -403,13 +403,15 @@
   * Understand `visibility timeout`.
   * Default visibility timeout is 30 seconds.
   * Increase it if your task takes more than 30 seconds.
-  * Maximum is 12 hours.
+  * Maximum `visibility timeout` is 12 hours.
   * Long polling doesn't return a response until a message arrives in the message queue, or the long poll times out
   * As such, long polling can save you money.
   ------------------------------------------
   #### SWF
+  * Has up to 1 year of retention period.
   * Workers are programs that interact with SWF to get tasks, process received tasks and return the results
   * Decider is a program that controls the coordination of tasks, i.e their ordering, concurrency, and scheduling according to the application logic.
+  * Starters - An application that can initiate a workflow. Could be your e-commerce website when placing an order or a mobile app searching for bus times.
   * **Task is only assigned once and is never duplicated**
   * task-oriented API
   * keeps track of all the tasks and events in an application
@@ -419,6 +421,12 @@
   ------------------------------------------
   #### Elastic Transcoder
   * Media content transcoder i.e format conversion, thumbnail generation
+  ------------------------------------------
+  #### API Gateway
+  * Low cost & efficient
+  * scales automatically
+  * throttle requests to prevent attacks
+  * connect to `CloudWatch` to log all requests
   ------------------------------------------
   #### Kinesis
   * For streaming data *consumption*
@@ -430,11 +438,7 @@
     * kinesis analytics - run sql query against streaming data for analytics purpose
   ![kinesis_stream](./kinesis_stream.png)
   ![kinesis_firehose](./kinesis_hose.png)
-  #### API Gateway
-  * Low cost & efficient
-  * scales automatically
-  * throttle requests to prevent attacks
-  * connect to `CloudWatch` to log all requests
+  ------------------------------------------
   #### Kinesis 101
 
 ### Extra Exam Tips
@@ -447,6 +451,21 @@
   OpsWorks
     * Orchestration Service that uses Chef
     * Look for the term `chef, recipes, cookbook` and think OpsWorks
+  EBS Backed vs Instance Store
+    * EBS Backed = Store Data Longt Term
+    * Instance Store - Shouldn't be used for long-term data storage
+  ------------------------------------------
+  AWS Organizations
+    * An account management service that enables you to consolidate multiple AWS accounts into an organisation that you create and centrally manage.
+    * Save money by using consolidated billing
+    * Unused reserved instances for EC2 are applied across the group
+    * CloudTrail is on a per account and per region basis but can be aggregated into a single bucket in the paying account.
+  ------------------------------------------
+  Cross Account Access
+    * Make it easier for you to work productively within a multi-account (or multi-role) AWS environment by making it easy for you to switch roles within the aws management console. You can now sign in to the console using your IAM user name then switch the console to manage another account without having to enter (or remember) another username or password.
+  ------------------------------------------
+  Resource Groups
+    * Make it easy to group your resources using the tags that are assigned to them You can group resources that share one or more tags.
 
 ### Undone sessions
   * 26
