@@ -35,7 +35,7 @@
     * `S3 - IA` (durable, immediately available, infrequently accessed, cheaper than `S3`).
     * `S3 One Zone` (even cheaper than IA, but only in one az).
     * `Glacier` (Archived data, where you can wait `3 - 5 hrs` before accessing).
-    * `S3 Reduced Redundancy Storage` (enables customers to store noncritical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage).
+    * `S3 Reduced Redundancy Storage (legacy, to be replaced by S3 One Zone)` (enables customers to store noncritical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage).
   * Once file's been uploaded successfully, you will receive `200` status code.
   * Read S3 FAQs before taking the exam.
   * Encryptions
@@ -288,6 +288,7 @@
     * Your db has massive reads and little writes
     * High scalability & performance
     * No SQL joins
+  * Automatically spans across multiple azs
   * DynamoDB scaling vs RDS scaling
   * DynamoDB has `push button` scaling which you can scale the db instance up/down by changing capacities and press `save` button,
     There is no down time. While in terms of RDS scaling, you will inevitably have down time making it a bit hard to scale.
@@ -474,6 +475,11 @@
   Direct Connect
   * AWS `Direct Connect` does *NOT* involve the internet; instead, it uses dedicated, private network connections between your intranet and VPC.
   * Takes `3-4` months to be setup.
+  ------------------------------------------
+  Security Token Service (STS)
+  * Grants users limited and temporary access to AWS resources.
+
+
 
 ### Undone sessions
   * 26
