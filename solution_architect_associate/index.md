@@ -27,7 +27,7 @@
   * Unlimited storage
   * S3 is a universal namespace. That is, names must be unique gobally.
   * You can upload files to S3 much faster by enabling multipart upload.
-  * Example bucket - `https://s3-eu-west-1.amazonaws.com/acloudguru`.
+  * Example bucket - Virtual-hosted style `https://s3-eu-west-1.amazonaws.com/acloudguru` or path style `http://BUCKET.s3-AWS-REGION.amazonaws.com`
   * Read after write consistency for `PUTS` of new objects.
   * Eventual Consistency for overwrite `PUTS and DELETES` (can take some time to propagate).
   * S3 Storage Classes/Tiers:
@@ -288,7 +288,9 @@
     * Your db has massive reads and little writes
     * High scalability & performance
     * No SQL joins
-  * DynamoDB scaling vs RDS scaling
+  * Automatically redundant across multiple availability zones.
+  * Allows for the storage of large text and binary objects, but there is a limit of *400kb*.
+  * DynamoDB scaling vs RDS scaling.
   * DynamoDB has `push button` scaling which you can scale the db instance up/down by changing capacities and press `save` button,
     There is no down time. While in terms of RDS scaling, you will inevitably have down time making it a bit hard to scale.
   ------------------------------------------
@@ -311,7 +313,8 @@
 
 
 ### VPC
-  * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets
+  * 1 subnet = 1 az. Subnet cannot span across multiple azs. But one az can have multiple subnets.
+  * By default, you can have *5* VPCs per region in your account.
   * All available AZs will be pre-defined for a particular region. VPC that resides in that region will span over all those AZs and you can later on create a subnet and specify which AZ it sits inside.
   ![](./vpc_with_azs.png)
 
@@ -399,9 +402,9 @@
   * Default retention period is *4 days*.
   * Guarantees that your message will be processed at least once.
   * Understand `visibility timeout`.
-  * Default visibility timeout is 30 seconds.
+  * Default visibility timeout is *30 seconds*.
   * Increase it if your task takes more than 30 seconds.
-  * Maximum `visibility timeout` is 12 hours.
+  * Maximum `visibility timeout` is *12 hours*.
   * Long polling doesn't return a response until a message arrives in the message queue, or the long poll times out
   * As such, long polling can save you money.
   ------------------------------------------
