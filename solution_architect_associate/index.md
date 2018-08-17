@@ -304,6 +304,12 @@
   ------------------------------------------
   #### Aurora
   * It provides up to five times better performance than MySQL at a price point one tenth of a commercial database while delivering similar performance and availability.
+  * Cannot be downloaded and installed on your machine
+  * MySQL compatible
+  * Relational DB
+  * Oracle competitor
+  * Auto-scaling & maintenance window
+  * 6 copies of data across 3 azs with 2 on each
   * Read Aurora FAQs
   ------------------------------------------
   #### Summary
@@ -478,11 +484,12 @@
   ------------------------------------------
   Security Token Service (STS)
   * Grants users limited and temporary access to AWS resources.
-
-
-
-### Undone sessions
-  * 26
-  * aurora
-  * Kinesis lab
-  * application services summary
+  ------------------------------------------
+  Active Directory Integration
+  *
+  WorkSpace
+  ------------------------------------------
+  * Cloud-based raplacement for a traditional desktop. Run Windows on the cloud.
+  * Workspaces are *persistent*.
+  * All data on the D drive is backed up every 12 hrs.
+  * No need to have an AWS account to login to workspaces.
