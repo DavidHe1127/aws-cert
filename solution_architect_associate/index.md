@@ -556,6 +556,12 @@
     3. After you create a volume, you can attach it to any EC2 instance in the *SAME* Availability Zone
     4. An EBS volume is off-instance storage that can persist independently from the life of an instance.
     5. EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.
+    6. EBS Volume Types
+      * General Purpose (SSD) - aka GP2, small to medium sized database, dev and test env and boot volumes
+      * Provisioned IOPS (SSD) - aka IO1, low-latency performance, I/O intensive apps such as large relational or NoSQL db.
+      * Magnetic - lowest cost per gb of all EBS volume types, data is accessed infrequently, and apps where the *lowest storage cost* is important
+    7. Provisioned IOPS max ratio is *50:1*
+    8. Factor in *CPU utilization, I/O operations, and the minimum memory requirements* when choosing EC2 instance type
   * An elastic network interface (ENI) is a logical networking component in a VPC that represents a virtual network card. You can attach a network interface to an EC2 instance in the following ways:
     1. When it's running (hot attach)
     2. When it's stopped (warm attach)
@@ -569,4 +575,9 @@
   * If the instance is stopped, AWS usually moves the instance to a new host computer
   * Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices
   * A launch configuration is a template that an *Auto Scaling group* uses to launch EC2 instances. You specify information for the instances such as the ID of AMI, the instance type, a key pair etc. Once it's created, you cannot modify
-  *
+  * AWS Trusted Advisor - Cost Optimization, Performance, Fault Tolerance, Security and Service Limits
+  * Fault Tolerance - min number of instances *MUST* run at any given point
+    High Availability - there are instances running across all AZs
+  * Storage Gateway - Cached Volumes is designed for low-latency access to frequently accessed data.
+  * AWS Web Application Firewall - aka WAF, helps protect your web apps from common web exploits attacks.
+  * You can *ONLY* use ACLs to grant basic read/write permissions to AWS accounts and not for public access over the Internet.
