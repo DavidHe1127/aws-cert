@@ -32,7 +32,7 @@
   * Eventual Consistency for overwrite `PUTS and DELETES` (can take some time to propagate).
   * S3 Storage Classes/Tiers:
     * `S3` (durable, immediately available, frequently accessed, multi-azs).
-    * `S3 - IA` (durable, immediately available, infrequently accessed, cheaper than `S3`).
+    * `S3 - IA` (durable, immediately available, infrequently accessed, long-term storage cheaper than `S3`).
     * `S3 One Zone` (even cheaper than IA, but only in one az).
     * `Glacier` (Archived data, where you can wait `3 - 5 hrs` before accessing).
     * `S3 Reduced Redundancy Storage` (enables customers to store noncritical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage).
@@ -524,8 +524,49 @@
   * All data on the D drive is backed up every 12 hours
   * You do not need an AWS account to login to workspaces
 
-### Undone sessions
-  * 26
-  * aurora
-  * Kinesis lab
-  * application services summary
+### Key points outside acloudguru course
+  * EC2-VPC: The instance retains its private IPv4 addresses and any IPv6 addresses when stop and restart.
+    EC2-Classic: AWS releases the public and private IPv4 addresses for the instance when you stop the instance, and assign new ones when you restart it.
+  * AWS Budgets gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.
+  * If your current-generation Amazon EBS volume is attached to a current-generation EC2 instance type, you can increase its size, change its volume type, or (for an io1 volume) adjust its IOPS performance, all without detaching it from the instance. You can apply these changes to detached volumes as well.
+  * Customers do not have full *admin privileges* to the underlying resources of RDS.
+  * Create your own KMS Key to maximize the protection for your senstive environment vars in lambda.
+  * Enable *versioning* and *MFA* for accidental deletion and accidental overwritting of s3 object.
+  * Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache that can reduce Amazon DynamoDB response times from milliseconds to microseconds, even at millions of requests per second.
+  * Transferring data from an EC2 instance to Amazon S3, Amazon Glacier, Amazon DynamoDB, Amazon SES, Amazon SQS, or Amazon SimpleDB in the same AWS Region has no cost at all. Refer to the Amazon EC2 Pricing on the link below for reference.
+  * Reduced Redundancy Storage (RRS) is an Amazon S3 storage option that enables customers to store noncritical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage. *99.99%* for both durability and availability.
+  * The AWS Lambda resource limit for ephemeral disk capacity (/tmp space) per invocation is *512 MB*
+  * In Amazon Redshift, you use *workload management* (WLM) to define the number of query queues that are available, and how queries are routed to those queues for processing. WLM is part of parameter group configuration. A cluster uses the WLM configuration that is specified in its associated parameter group.
+  * If your Spot instance is terminated or stopped by Amazon EC2 *in the first instance hour, you will not be charged for that usage*. However, if you terminate the instance yourself, you will be charged to the nearest second. If the Spot instance is terminated or stopped by Amazon EC2 in any subsequent hour, you will be charged for your usage to the nearest second. If you are running on Windows and you terminate the instance yourself, you will be charged for an entire hour.
+  * Snapshots occur *asynchronously* which means that the point-in-time snapshot is created immediately, but the status of the snapshot is pending until the snapshot is complete (when all of the modified blocks have been transferred to Amazon S3),
+  * RDS is incorrect because the scenario requires you to have access to the underlying operating system of the database server. Remember that Amazon RDS is a managed database service, which means that Amazon is the one that manages the underlying operating system of the database instance and not you.
+  * Elastic Beanstalk is a service that allows you to quickly deploy and manage your application in AWS. What it does is it automatically creates EC2 instances for your application, which you can also manage just like a regular instance
+  * Although EBS encryption provides additional security for the EBS volumes, the application could not use this service to encrypt or decrypt each individual data that it writes on the disk. It is better to use KMS API instead to automatically encrypt the data before saving it to disk.
+  * EBS snapshot for RAID
+    1. Stop all I/O activity in the volumes
+    2. Start EBS snapshot of volumes
+    3. Wait for snapshots to complete
+    4. Resume all I/O activity
+  * CloudFront and ELB supports `Perfect Forward Secrecy`
+  -------------------------------------------------------
+  ## VERY IMPORTANT TO REMEMBER
+  * EBS
+    1. When you create an EBS volume in an Availability Zone, it is automatically replicated within that zone to prevent data loss due to failure of any single hardware component.
+    2. An EBS volume can only be attached to one EC2 instance at a time.
+    3. After you create a volume, you can attach it to any EC2 instance in the *SAME* Availability Zone
+    4. An EBS volume is off-instance storage that can persist independently from the life of an instance.
+    5. EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.
+  * An elastic network interface (ENI) is a logical networking component in a VPC that represents a virtual network card. You can attach a network interface to an EC2 instance in the following ways:
+    1. When it's running (hot attach)
+    2. When it's stopped (warm attach)
+    3. When the instance is being launched (cold attach).
+  * In Auto Scaling, the following statements are correct regarding the cooldown period:
+    1. It ensures that the Auto Scaling group does not launch or terminate additional EC2 instances before the previous scaling activity takes effect.
+    2. Its default value is *300 seconds*.
+    3. It is a configurable setting for your Auto Scaling group.
+  * Largest object that can be uploaded in a single `PUT` *5 GB*
+  * Decision task - tells the decider the state of the workflow execution
+  * If the instance is stopped, AWS usually moves the instance to a new host computer
+  * Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices
+  * A launch configuration is a template that an *Auto Scaling group* uses to launch EC2 instances. You specify information for the instances such as the ID of AMI, the instance type, a key pair etc. Once it's created, you cannot modify
+  *
