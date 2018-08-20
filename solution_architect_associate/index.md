@@ -581,3 +581,25 @@
   * Storage Gateway - Cached Volumes is designed for low-latency access to frequently accessed data.
   * AWS Web Application Firewall - aka WAF, helps protect your web apps from common web exploits attacks.
   * You can *ONLY* use ACLs to grant basic read/write permissions to AWS accounts and not for public access over the Internet.
+  * When you create an encrypted EBS volume and attach it to a supported instance type, the following types of data are encrypted:
+    * Data at rest inside the volume
+    * All data moving between the volume and the instance
+    * All snapshots created from the volume
+    * All volumes created from those snapshots
+  * In Amazon Kinesis, the producers continually push data to Kinesis Data Streams and the consumers process the data in real time. Consumers (such as a custom application running on Amazon EC2, or an Amazon Kinesis Data Firehose delivery stream) can store their results using an AWS service such as `Amazon DynamoDB, Amazon Redshift, or Amazon S3`.
+  * Spot instance pricing model - 1 hr free of charge, afterwards charged to the nearest second. i.e if $0.04 per hour and the bie prices goes up to $0.06 in 90 mins then the total charge is `$0.04(60 mins) + $0.02(30 mins) = $0.06`
+  *
+  Maximum object size                          5 TB
+  Maximum number of parts per upload           10,000
+  Part numbers                                 1 to 10,000 (inclusive)
+  Part size                                    5 MB to 5 GB, last part can be < 5 MB
+  Maximum number of parts returned for a list parts request                         1000
+  Maximum number of multipart uploads returned in a list multipart uploads request  1000
+  * The instance that you want to attach to existing Auto Scaling Group must meet the following criteria:
+    * The instance is in the running state.
+    * The AMI used to launch the instance must still exist.
+    * The instance is not a member of another Auto Scaling group.
+    * The instance is in the same Availability Zone as the Auto Scaling group.
+    * If the Auto Scaling group has an attached load balancer, the instance and the load balancer must both be in EC2-Classic or the same VPC. If the Auto Scaling group has an attached target group, the instance and the load balancer must both be in the same VPC.
+  * Elastic Load Balancing provides access logs that capture detailed information about requests sent to your load balancer
+
