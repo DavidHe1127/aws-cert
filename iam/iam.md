@@ -1,6 +1,6 @@
 ### Why do we need to assume role?
 
-We need to let `AWS` to assume `PhotoProcessorFunctionIamRole` created by us to have permission to execute our lambda with two policies `AllPrivsForPhotoAlbumUserfilesBucket` and `AllPrivsForDynamo`. These policies basically define what actions this role allows your lambda to do on what resources.
+We need to let `AWS` to assume `PhotoProcessorFunctionIamRole` created by us to have permission to execute our lambda with two policies `AllPrivsForPhotoAlbumUserfilesBucket` and `AllPrivsForDynamo`. These policies basically define what actions this role allows your lambda to take on what resources.
 
 Role assuming is needed here is because - we want `AWS` to trigger lambda when an image is created in `S3` bucket. You can think of `AWS` as another account to request for access to our resource that is lambda in this example.
 
