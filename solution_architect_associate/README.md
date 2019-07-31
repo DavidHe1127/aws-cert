@@ -250,8 +250,7 @@
 ### Database
   #### RDS
   * If EC2 cannot talk to RDS, chances are RDS security group does not allow inbound traffic from the security group where your EC2 instance is in.
-  ------------------------------------------
-  #### Backup
+  #### RDS Backup
   * Automated Backups
     * allow you to recover your database to any point in time within a `retention period`. The retention period can be between one and **35 days**. Automated Backups will take a full daily snapshot and will also store transaction logs throughout the day. When you do a recovery, AWS will first choose the most recent daily back up, and then apply transaction logs relevant to that day. This allows you to do a point in time recovery down to a second, within the retention period.
     * Enabled by default
@@ -289,6 +288,7 @@
     * High scalability & performance
     * No SQL joins
   * Automatically redundant across multiple availability zones.
+  * Manual Backup - On-demand backups and Point-in-Time recovery
   * Allows for the storage of large text and binary objects, but there is a limit of *400kb*.
   * DynamoDB scaling vs RDS scaling.
   * DynamoDB has `push button` scaling which you can scale the db instance up/down by changing capacities and press `save` button,
