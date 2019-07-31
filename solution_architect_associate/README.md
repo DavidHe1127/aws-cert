@@ -288,7 +288,7 @@
     * High scalability & performance
     * No SQL joins
   * Automatically redundant across multiple availability zones.
-  * Manual Backup - On-demand backups and Point-in-Time recovery
+  * Manual Backup - On-demand backups and [Point-in-Time recovery](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html)
   * Allows for the storage of large text and binary objects, but there is a limit of *400kb*.
   * DynamoDB scaling vs RDS scaling.
   * DynamoDB has `push button` scaling which you can scale the db instance up/down by changing capacities and press `save` button,
