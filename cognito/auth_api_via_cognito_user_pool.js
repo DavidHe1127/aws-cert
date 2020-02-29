@@ -1,1 +1,0 @@
-aws cognito-idp admin-initiate-auth --user-pool-id us-east-2_R2KUELtYK --client-id 4tv7co63gh9audhsk8kuhdsm3f --auth-flow ADMIN_NO_SRP_AUTH --auth-parameters USERNAME=tracyguan108@gmail.com,PASSWORD=52230365DavidHe --region us-east-2
