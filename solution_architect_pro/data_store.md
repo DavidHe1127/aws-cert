@@ -35,6 +35,7 @@ GET /key-prefix/cool-file.jpg 404
 PUT /key-prefix/cool-file.jpg 200
 GET /key-prefix/cool-file.jpg 404 - response for the first `GET` is returned until `PUT` propagates
 ```
+
 - `eventual consistency for PUTs and DELETEs` - serve the current file until operations propagate elsewhere
 - `update to a single key are atomic` - only one person can update the object at any given time. If two requests, they need to be processed in the order of their timestamps. You will see the updates as soon as I replicate elsewhere.
 
@@ -43,12 +44,13 @@ GET /key-prefix/cool-file.jpg 404 - response for the first `GET` is returned unt
 Fine-grained control
 
 Resource-based
+
 - Bucket policy controls if an user has access to bucket
 - Object ACL controls if an user has access to an object
-User-based
+  User-based
 - IAM controls if an user has access to s3
-Optional multi-factor auth b4 delete
-If all conditions are met, you can access to that object.
+  Optional multi-factor auth b4 delete
+  If all conditions are met, you can access to that object.
 
 ---
 
@@ -92,7 +94,6 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 - pay for only what you use (in contrast to EBS)
 - Multi-az support
 - ⚠️ Cost wise, it's 3 times more expensive than EBS. 20 times more expensive than s3
-
 
 ---
 
@@ -142,10 +143,9 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 
 ![read-replication](./read-replication.png)
 
-
 #### Multi-AZ
 
-- RDS automatically creates a primary DB instance and **synchronously replicates the data to a standby instance in a different AZ
+- RDS automatically creates a primary DB instance and \*\*synchronously replicates the data to a standby instance in a different AZ
 - In the event of an infrastructure failure, RDS performs an automatic failover to the standby so that you can resume database operations as soon as the failover is complete
 
 ![multi-az-failover](./rds-multi-az.png)
