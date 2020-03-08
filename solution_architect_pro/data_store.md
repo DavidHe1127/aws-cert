@@ -8,9 +8,14 @@
 - [EFS](#efs)
 - [Storage gateway](#storage-gateway)
 - [WorkDocs](#workdocs)
-
 - [DB on ec2](#db-on-ec2)
 - [RDS](#rds)
+- [DynamoDB](#dynamoDB)
+- [Redshift](#redshift)
+- [Neptune](#neptune)
+- [ElasticCache](#elasticcache)
+- [DocumentDB](#documentdb)
+- [DB options comparison](#db-options-comparison)
 
 ### S3
 
@@ -145,7 +150,46 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 
 ![multi-az-failover](./rds-multi-az.png)
 
+---
 
+### DynamoDB
 
+- AWS managed, multi-AZ NoSQL data store with cross-region replication option
+- Defaults to eventual consistency reads but can request strongly consistent read via SDK parameter
+- Priced on throughput rather than compute. provisioned RCU and WCU
+- On-Demand capacity for flexible capacity at a small premium cost
+- Able to achieve ACID compliance with DynamoDB Transactions
 
+---
 
+### Redshift
+
+- Fully managed, clustered peta-byte scale ⚠️ **data warehouse**
+- Extremely cost-effective as compared to some other on-premises data warehouse platforms
+- PSQL compatible with JDBC and ODBC dirvers available; compatible with most BI tools out of the box
+
+---
+
+### Neptune
+
+- fully-managed graph database
+
+---
+
+### ElasticCache
+
+- ⚠️ NOT a persistent data store solution
+
+![elasticache-use-cases](./elasticache-use-cases.png)
+
+---
+
+### DocumentDB
+
+- AWS version of MangoDB as it's fully compatible with MongoDB
+
+---
+
+### DB options comparison
+
+![db options](./db-options.png)

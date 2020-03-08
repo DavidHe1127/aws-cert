@@ -1,5 +1,5 @@
 - [General Concepts](#general-concepts)
-- [Data Store](#./data_store.md)
+- [Data Store](./data_store.md)
 
 ### General Concepts
 
