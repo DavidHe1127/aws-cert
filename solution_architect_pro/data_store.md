@@ -6,6 +6,11 @@
 - [Glacier](#glacier)
 - [EBS](#ebs)
 - [EFS](#efs)
+- [Storage gateway](#storage-gateway)
+- [WorkDocs](#workdocs)
+
+- [DB on ec2](#db-on-ec2)
+- [RDS](#rds)
 
 ### S3
 
@@ -82,5 +87,65 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 - pay for only what you use (in contrast to EBS)
 - Multi-az support
 - ⚠️ Cost wise, it's 3 times more expensive than EBS. 20 times more expensive than s3
+
+
+---
+
+### Storage Gateway
+
+- a virtual machine you can download
+- provides local storage resources backed by AWS S3 and Glacier
+- it can sync on-prem dataa back and forth to s3 and Glacier
+- ⚠️ often used in disaster recovery
+- Useful in cloud migration - migrate on-prem data to the cloud
+
+![storage gateway modes](./storage-gateway.png)
+
+---
+
+### WorkDocs
+
+- aws version of google drive or dropbox
+- can integrate with AD for SSO
+
+---
+
+### DB on EC2
+
+- Must manage everything like backups, redundancy, patching and scaling yourself
+- Good option if you require a database not yet supported by RDS such as IBM DB2 or SAP HANA
+- Good option if it's not feasible to migrate to AWS-managed database
+
+---
+
+### RDS
+
+- Managed database option for MySQL, Maria, PostgreSQL MS-sql-server, Oracle and Aurora
+- ⚠️ Best for structured, relational data store needs
+- Aims to be drop-in replacement for existing on-prem instances of same databases
+- Automated backups and patching in customer-defined maintenance windows
+- Push-button scaling, replication and redundancy
+
+![rds-anti-pattern](./rds-anti-pattern.png)
+
+#### Read Replication
+
+- Easy to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads
+- Create one or more replicas of a given source DB Instance and serve high-volume application read traffic from multiple copies of your data, thereby increasing aggregate read throughput
+- Read replicas can also be promoted when needed to become standalone DB instances
+- Read replicas are **asynchronous**
+
+![read-replication](./read-replication.png)
+
+
+#### Multi-AZ
+
+- RDS automatically creates a primary DB instance and **synchronously replicates the data to a standby instance in a different AZ
+- In the event of an infrastructure failure, RDS performs an automatic failover to the standby so that you can resume database operations as soon as the failover is complete
+
+![multi-az-failover](./rds-multi-az.png)
+
+
+
 
 
