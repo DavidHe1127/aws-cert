@@ -23,3 +23,58 @@ UDP
 VPC Reserved IPs
 
 ![reserved-ips](vpc-reserved-ips.png)
+
+### VPN
+
+[on-premise conn to VPC options](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html)
+
+VPN Transit
+
+![vpn-transit](vpn_transit.png)
+
+### VPC to VPC
+
+VPC Peering
+![VPC Peering](vpc-peering.png)
+
+VPC PrivateLink
+![VPC PrivateLink](vpc-privatelink.png)
+
+VPC Endpoints
+![VPC Endpoints](vpc-endpoints.png)
+
+### IGW
+
+- Horizontally scaled, redundant and highly available component
+- No availability risk or bandwidth constraints
+- Supports IPV4/6
+- Perform NAT for instances wiht public ip
+- Does not perform NAT for instances that only have private IP without public one
+
+### Egress-Only IGW
+
+- IPV6 addresses are globally unique and are therefore public by default
+- Provides the capability of allowing IPv6 outbound traffic to internet
+
+### NAT instance
+
+- EC2 from a special aws-provided AMI
+- Not supported for IPv6
+- Private instances in private subnet must have route to the NAT instance, usually the default route destination of `0.0.0.0/0`
+
+### NAT Gateway
+
+- Fully-managed NAT service in place of NAT instance
+- Must be created in a Public Subnet
+- Created in specified AZ with redundancy in that zone
+- For multi-AZ redundancy, create NAT Gateways in each AZ with routes for private subnets to use the local Gateway
+- Up to 5Gbps bandwidth that can scale up to 45Gpbs
+- Cannot use NAT Gateway to access VPC peering, VPN or Direct Connect, so be sure to include specific routes to those in your route table
+
+![gateway-vs-instance](nat-instance-vs-gateway.png)
+
+### Routing 
+
+Border Gateway Protocol Weighting in conn cutover. Higher weight wins
+
+![border-gateway-protocol](border-gateway-protocol.png)
