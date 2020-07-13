@@ -78,3 +78,46 @@ VPC Endpoints
 Border Gateway Protocol Weighting in conn cutover. Higher weight wins
 
 ![border-gateway-protocol](border-gateway-protocol.png)
+
+### Enhanced Networking
+
+- Intel 82599 VF Interface 10Gpbs
+- Elastic Network Adapter 25Gpbs
+
+Placement groups
+![placement-groups](./placement-groups.png)
+
+![pg](./placement-groups-2.png)
+![pg](./placement-groups-3.png)
+
+### Route53
+
+![route53](route53.png)
+
+### CloudFront
+
+#### To use custom cert, you have 2 options:
+
+- SNI - doesn't support old browsers
+- Pay for each dedicated IP address for each edge location
+
+### ELB
+
+- consume IP addresses within a VPC subnet
+- NLB doesn't do user authentication
+- All load balancers support sticky session
+- NLB excels in performance
+
+#### Routing
+
+- NLB routes traffic based on Port number
+- ALB can route traffic based on 
+    - Host-based routing
+    - Path-based routing
+    - HTTP header-based routing
+    - HTTP method-based routing
+    - Query String parameter-based routing
+    - Source IP address CIDR-based routing
+ ## Migration
+
+ ![application-discovery-service](AWS-APPLICATION-DISCOVERY-SERVICE.png)
