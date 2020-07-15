@@ -78,3 +78,62 @@ Bad use cases:
 
  - Write-intensive apps that don't have many reads
  - Apps where you use client caching methods
+
+ ### CloudFront
+
+ ![cloudfront](./cloudfront.png)
+
+ ### SNS
+
+- Enable a pub/sub design pattern
+- Topics - A channel for publishing a notification
+- Subscription - Configuring an endpoint to receive messages published on the topic
+
+![sns](./sns.png)
+
+### SQS
+
+- Available integration with KMS for encrypted messaging
+- Transient storage - `default 4 days, max 14 days`
+- max message size of `256kb`.
+- FIFO queue downside - if a message fails or gets stuck, it will hold up all messages behind it causing latency
+
+#### Amazon MQ
+
+- Managed implementation of Apache ActiveMQ
+- Use SQS if you creating a new app from scratch
+- Use MQ if you want an easy low-hassle path to migrate from existing on-prem message brokers to AWS
+
+### Amazon EventBridge
+
+Designed to link variety of AWS and 3rd party apps to rules logic for launching other event-based actions
+
+![event-bridge](./event-bridge.png)
+
+i.e for an index has been created on `zendesk`, it triggers an event in bridge and which in turn calls a lambda to do something
+
+### Simple Workflow Service (SWF)
+
+- workflow/order fulfillment
+- **manual review steps invovled**
+
+### Step Functions
+
+- Managed workflow and orchestration platform
+- Scalable and highly available
+- Define your app as a state machine
+- Create tasks, sequential/parallel steps, branching paths or timeers
+- Amazon State language declarative JSON
+- Apps can interact and update the stream via Step Function API
+- Visual interface describes flow and realtime status
+- Detailed logs of each step execution
+
+### Comparisons
+
+![comparisons](./comparisons.png)
+
+### EMR - Elastic MapReduce
+
+- Managed Hadoop framework for processing huge amounts of data
+- Also supports Apache Spark, HBase, Presto and Flink
+- Most commonly used for log analysis, financial analysis or extract, translate and loading activities
