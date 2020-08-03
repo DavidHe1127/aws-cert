@@ -84,3 +84,36 @@ AWS OpsWorks
 ![aws opsworks](ops-works-2.png)
 
 ### AWS System Manager
+
+![ssm-1](ssm-1.png)
+![ssm-2](ssm-2.png)
+
+System Manager Docs
+
+- Define actions the ssm will perform. 
+
+![ssm-docs](ssm-docs.png)
+
+---
+
+### Other deployment services
+
+#### Amazon AppStream and WorkSpaces
+
+- Fully managed desktop-as-a-service (WorkSpaces) and application hosting (AppStream)
+- Everything lives on AWS infra and can be tightly managed and controlled
+- Use Case: Highly regulated industries where security and confidentiality is a concern. Can be used to keep all data in a protected VPC and off local PCs.
+- Use Case: Remote or seasonal workers such as a distributed call center. Given remote workers virtual desktops or hosted applications and let them use their own PCs.
+- Use Case: Allow customers to demo your product without them having to download and install it locally.
+
+#### AWS Connect and AWS Chime
+
+![aws-connect-n-aws-chime](aws-connect-n-aws-chime.png)
+
+#### AWS WorkDocs and AWS WorkMail
+
+![aws-workdocs-n-aws-workmail](workdocs-workmail.png)
+
+#### AWS Worklink and AWS Alexa for business
+
+![worklink-n-alexa](worklink-n-alexa.png)
