@@ -91,6 +91,15 @@ VPN Transit
 
 Use AWS PrivateLink when you have a client/server set up where you want to allow one or more consumer VPCs unidirectional access to a specific service or set of instances in the service provider VPC. Only the clients in the consumer VPC can initiate a connection to the service in the service provider VPC. This is also a good option when client and servers in the two VPCs have overlapping IP addresses as AWS PrivateLink leverages ENIs within the client VPC such that there are no IP conflicts with the service provider. You can access AWS PrivateLink endpoints over VPC Peering, VPN, and AWS Direct Connect.
 
+#### AWS Direct Connect
+
+AWS Direct Connect links your internal network to an AWS Direct Connect location over a standard Ethernet fiber-optic cable. One end of the cable is connected to your router, the other to an AWS Direct Connect router. With this connection, you can create virtual interfaces directly to public AWS services (for example, to Amazon S3) or to Amazon VPC, bypassing internet service providers in your network path. An AWS Direct Connect location provides access to AWS in the Region with which it is associated. You can use a single connection in a public Region or AWS GovCloud (US) to access public AWS services in all other public Regions.
+
+![direct connect](direct_connect_overview.png)
+
+#### How VPC differ from VPN Conne?
+
+A VPC VPN Connection utilizes IPSec to establish encrypted network connectivity between your intranet and Amazon VPC over the Internet. VPN Connections can be configured in minutes and are a good solution if you have an immediate need, have low to modest bandwidth requirements, and can tolerate the inherent variability in Internet-based connectivity. AWS Direct Connect **DOES NOT** involve the Internet; instead, it uses **dedicated, private network connections** between your intranet and Amazon VPC.
 
 ---
 
@@ -124,7 +133,7 @@ Use AWS PrivateLink when you have a client/server set up where you want to allow
 
 ![gateway-vs-instance](nat-instance-vs-gateway.png)
 
-### Routing 
+### Routing
 
 Border Gateway Protocol Weighting in conn cutover. Higher weight wins
 
@@ -162,7 +171,7 @@ Placement groups
 #### Routing
 
 - NLB routes traffic based on Port number
-- ALB can route traffic based on 
+- ALB can route traffic based on
     - Host-based routing
     - Path-based routing
     - HTTP header-based routing

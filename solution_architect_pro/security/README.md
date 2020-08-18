@@ -28,6 +28,8 @@
 #### Credential and Access Management
 ![ad-connector-simple-ad](ad-connector-simple-ad.png)
 
+### AWS Orgnization
 
+#### Organizational Unit (OU)?
 
-
+An organizational unit (OU) is a group of AWS accounts within an organization. An OU can also contain other OUs enabling you to create a hierarchy. For example, you can group all accounts that belong to the same department into a departmental OU. Similarly, you can group all accounts running production services into a production OU. OUs are useful when you need to apply the same controls to a subset of accounts in your organization. Nesting OUs enables smaller units of management. For example, in a departmental OU, you can group accounts that belong to individual teams in team-level OUs. These OUs inherit the policies from the parent OU in addition to any controls assigned directly to the team-level OU.
