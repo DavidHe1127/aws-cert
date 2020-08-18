@@ -28,6 +28,11 @@ VPC Reserved IPs
 
 [on-premise conn to VPC options](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html)
 
+#### Multiple site-to-site VPN Conn
+
+![multiple site-to-site vpn conn](multi-site-2-site-vpn-conns.png)
+
+
 VPN Transit
 
 ![vpn-transit](vpn_transit.png)

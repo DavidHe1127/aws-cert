@@ -95,6 +95,10 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 - Multi-az support
 - ⚠️ Cost wise, it's 3 times more expensive than EBS. 20 times more expensive than s3
 
+#### EBS vs EFS
+
+![ebs-vs-efs](ebs-efs.png)
+
 ---
 
 ### Storage Gateway
