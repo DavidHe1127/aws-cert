@@ -39,14 +39,60 @@ VPN Transit
 
 ### VPC to VPC
 
-VPC Peering
+#### VPC Peering
 ![VPC Peering](vpc-peering.png)
 
-VPC PrivateLink
+- max limit 125 peering conns per vpc
+- If you are using VPC peering, on-premises connectivity (VPN and/or Direct Connect) must be made to each VPC. Resources in a VPC cannot reach on-premises using the hybrid connectivity of a peered VPC. i.e VPC A cannot reach on-prem sitting behind customer gateway
+![vpc-peering](vpc-peering-1.png)
+- best used in inter-vpc communication between resources
+- conn is less than 10
+- lowest overall cost
+
+#### Transit VPC
+
+- hub and spoke design
+- One central VPC (hub VPC) connects with every VPC (spoke VPC) via a VPN conn using [BGP](https://www.cloudflare.com/en-gb/learning/security/glossary/what-is-bgp/).
+- Hub VPC contains EC2 instances running software appliances that route incoming traffic to their destinations using VPN overlay.
+- Higher cost for running virtual appliances
+- limited throughput per VPC (up to 1.25 Gbps per VPN tunnel)
+- additional configuration and management overhead (customers have to manage the availability and redundancy of EC2 instances
+
+![transit vpc](transit-vpc.png)
+
+#### Transit Gateway
+
+- It's a regional service. You should restrict your architecture to just one Transit Gateway connecting all your VPCs in a given Region, and use Transit Gateway routing tables to isolate them wherever needed.
+- Transit Gateway abstracts away the complexity of maintaining VPN connections with hundreds of VPCs.
+- It removes the need to manage and scale EC2 based software appliances. AWS is responsible for managing all resources needed to route traffic.
+- It removes the need to manage high availability by providing a highly available and redundant Multi-AZ infra.
+- It improves bandwidth for inter-VPC comm to burst speeds of 50 Gbps per AZ.
+- It streamlines user costs to a simple per hour per/GB transferred model.
+- Decreases latency by removing EC2 proxies and the need for VPN encapsulation
+
+#### VPC Peering outweigh Transit Gateway in the following areas
+
+- Lower cost
+- **No bandwidth limit** - 50 Gbps for Transit Gateway
+- Smaller latency - Transit Gateway is an additional hop between VPCs.
+- Security Groups compatibility
+
+![transit-gateway](transit-gateway.png)
+
+#### VPC PrivateLink
 ![VPC PrivateLink](vpc-privatelink.png)
 
-VPC Endpoints
+#### VPC Endpoints
 ![VPC Endpoints](vpc-endpoints.png)
+
+![VPC PrivateLink](vpc-privatelink-1.png)
+
+#### AWS PrivateLink use case
+
+Use AWS PrivateLink when you have a client/server set up where you want to allow one or more consumer VPCs unidirectional access to a specific service or set of instances in the service provider VPC. Only the clients in the consumer VPC can initiate a connection to the service in the service provider VPC. This is also a good option when client and servers in the two VPCs have overlapping IP addresses as AWS PrivateLink leverages ENIs within the client VPC such that there are no IP conflicts with the service provider. You can access AWS PrivateLink endpoints over VPC Peering, VPN, and AWS Direct Connect.
+
+
+---
 
 ### IGW
 
