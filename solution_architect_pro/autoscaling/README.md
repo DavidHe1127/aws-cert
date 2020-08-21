@@ -27,6 +27,12 @@ So, think of Firehose as a pre-configured streaming application with a few speci
 ![kinesis](kinesis.png)
 ![kinesis-data-stream](kinesis-data-stream.png)
 
+#### SQS vs Kinesis
+
+SQS - Messaging service. Message queue to store messages between distributed application components.
+
+Kinesis - Streaming service. Handle real-time processing of big data with minimal delay.
+
 ### DynamoDB
 
 - Max item size <= 400kb
@@ -119,6 +125,8 @@ i.e for an index has been created on `zendesk`, it triggers an event in bridge a
 
 ### Step Functions
 
+AWS Step Functions is a fully managed service that makes it easy to coordinate the components of distributed applications and microservices using visual workflows. It includes features below:
+
 - Managed workflow and orchestration platform
 - Scalable and highly available
 - Define your app as a state machine
@@ -127,6 +135,8 @@ i.e for an index has been created on `zendesk`, it triggers an event in bridge a
 - Apps can interact and update the stream via Step Function API
 - Visual interface describes flow and realtime status
 - Detailed logs of each step execution
+
+![step function](./step-functions.png)
 
 ### Comparisons
 

@@ -1,17 +1,19 @@
-## Key points 21
+## Key points 31
 
 ### Autoscaling
 
 ### Business Continuity
 
 - Spot instance can be interrupted. Reserved Instance provides massive discount and needs at least **1 year** rental term.
-- Use DLQ (dead letter queue) for failed transactions reprocess
+- Use DLQ (dead letter queue) for failed transactions reprocess.
+- If `RPO` of 1 hour is required, it basically requires backup of data store to be hourly-based.
 
 ### Cost Management
 
 ### Migration
 
-- Cert produced by AWS Cert Manager cannot be cross-region
+- Cert produced by AWS Cert Manager **CANNOT BE** cross-region
+- Snowmobile is recommended for transferring data more than **10PB**
 
 ### Data Store
 
@@ -19,6 +21,8 @@
 - S3 IA is suitable for data that is accessed infrequently but still needs an **immediate access**.
 - GP2 has **3 IOPS** per GB
 - EFS has **higher latency** than EBS provisioned IOPS
+- DynamoDB **DOES NOT** support CW events
+- cross-region replication has 2 copies and hence **double the cost**.
 
 ### Deployment and operation management
 
@@ -35,7 +39,8 @@
 
 ### Security
 
-- Use AWS Org and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**.
+- Use **AWS Org** and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**.
+- Cloudtrail to SNS **DOES NOT** have filtering
 
 
 
