@@ -89,6 +89,8 @@ Bad use cases:
 
  ![cloudfront](./cloudfront.png)
 
+ - To increase your cache hit ratio, you can configure your origin to add a `Cache-Control max-age` directive to your objects, and specify the longest practical value for `max-age`. The shorter the cache duration, the more frequently CloudFront forwards requests to your origin to determine if an object has changed and to get the latest version.
+
  ### SNS
 
 - Enable a pub/sub design pattern

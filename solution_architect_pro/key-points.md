@@ -1,14 +1,18 @@
-## Key points 31
+## Key points 46
 
 ### Autoscaling
 
 - Redshift (data warehousing) cluster is **single AZ**
+- Migrate the MySQL database server into a Multi-AZ Amazon RDS for MySQL. 
+- Enable API caching on API Gateway to reduce the number of Lambda function invocations. 
 
 ### Business Continuity
 
 - Spot instance can be interrupted. Reserved Instance provides massive discount and needs at least **1 year** rental term.
 - Use DLQ (dead letter queue) for failed transactions reprocess.
 - If `RPO` of 1 hour is required, it basically requires backup of data store to be hourly-based.
+- CloudFront - Create two cache behaviors for static and dynamic content. Remove the **User-Agent** HTTP header from the whitelist headers section on both of the cache behaviors. Remove the **session cookie** from the whitelist cookies section and the **Authorization HTTP header** from the whitelist headers section for cache behavior configured for static content.
+- **EBS is 10 times more expensive than s3**
 
 ### Cost Management
 
@@ -28,7 +32,9 @@
 
 ### Deployment and operation management
 
-
+- API Gateway 10 MB Size Limitation
+- Use AWS SAM and built-in AWS **CodeDeploy** to deploy the new Lambda version, gradually shift traffic to the new version, and use pre-traffic and post-traffic test functions to verify code. Rollback if Amazon CloudWatch alarms are triggered.
+- `--regions` is NOT a valid param in cfn cli.
 
 ### Networking
 
@@ -43,7 +49,9 @@
 
 - Use **AWS Org** and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**.
 - Cloudtrail to SNS **DOES NOT** have filtering
-
+- **Amazon S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer. On very rare occasions, events might be lost**
+- AWS Trusted adviser is NOT event driven, i.e., it must be scheduled. This means running it on some frequency, the quickest refresh is every 5 minutes.
+- Use AWS System Manager on all instances to manage patching
 
 
 
