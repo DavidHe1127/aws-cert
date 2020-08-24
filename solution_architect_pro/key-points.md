@@ -2,6 +2,8 @@
 
 ### Autoscaling
 
+- Redshift (data warehousing) cluster is **single AZ**
+
 ### Business Continuity
 
 - Spot instance can be interrupted. Reserved Instance provides massive discount and needs at least **1 year** rental term.

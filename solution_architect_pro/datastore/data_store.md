@@ -171,6 +171,8 @@ Data lifecycle manager allows us to schedule creation/deletion of snapshots for 
 - Fully managed, clustered peta-byte scale ⚠️ **data warehouse**
 - Extremely cost-effective as compared to some other on-premises data warehouse platforms
 - PSQL compatible with JDBC and ODBC dirvers available; compatible with most BI tools out of the box
+- Amazon Redshift is available in several AWS Regions. By default, Amazon Redshift provisions your cluster in **one** randomly selected Availability Zone (AZ) within the AWS Region that you choose. All the cluster nodes are provisioned in the same Availability Zone
+- For HA and reliability, ensure Amazon Redshift cluster creation has been template using AWS CloudFormation so it can easily be launched in another AZ and data populated from the automated Redshift back-ups stored in Amazon S3.
 
 ---
 

@@ -25,6 +25,30 @@ Optimized Data Transfer
 
 For example, we can use a tag in an IAM policy to implement access controls to certain resources
 
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringEquals": {"ec2:ResourceTag/Owner": "${aws:username}"}
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ec2:DescribeInstances",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
 - Enforcing standardized tagging can be done via AWS Config Rules or custom scripts.
 
 For example, EC2 instances not propery tagged are 

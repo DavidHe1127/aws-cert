@@ -117,3 +117,7 @@ System Manager Docs
 #### AWS Worklink and AWS Alexa for business
 
 ![worklink-n-alexa](worklink-n-alexa.png)
+
+#### AWS Inspector
+
+Used to automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
