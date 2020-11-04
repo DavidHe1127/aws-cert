@@ -15,7 +15,7 @@
 - If `RPO` of 1 hour is required, it basically requires backup of data store to be hourly-based.
 - CloudFront - Create two cache behaviors for static and dynamic content. Remove the **User-Agent** HTTP header from the whitelist headers section on both of the cache behaviors. Remove the **session cookie** from the whitelist cookies section and the **Authorization HTTP header** from the whitelist headers section for cache behavior configured for static content.
 - **EBS is 10 times more expensive than s3**
-- Workflow is best to be dealth with AWS SWF
+- Workflow is best to be dealt with AWS SWF
 
 ### Cost Management
 
@@ -40,7 +40,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - EFS has **higher latency** than EBS provisioned IOPS
 - DynamoDB **DOES NOT** support CW events
 - cross-region replication has 2 copies and hence **double the cost**.
-- ElasticCache requires code changes in application
+- ElasticCache requires implementation code in application
 
 ### Deployment and operation management
 
@@ -66,7 +66,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - Use **AWS Org** and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**.
 - Cloudtrail to SNS **DOES NOT** have filtering
 - **Amazon S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer. On very rare occasions, events might be lost**
-- AWS Trusted adviser is NOT event driven, i.e., it must be scheduled. This means running it on some frequency, the quickest refresh is every 5 minutes.
+- AWS Trusted adviser is NOT event driven, i.e., it must be scheduled. This means running it on some frequency, the quickest refresh is every 5 minutes. It helps with resources provisioning with best practices.
 - Use AWS System Manager on all instances to manage patching
 - S3 generated keys cannot be managed
 - Use tag-based IAM policy to implement granular access control over certain resources. Read Tagging in [cost-management](./cost-management)

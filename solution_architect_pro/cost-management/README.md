@@ -48,10 +48,11 @@ For example, we can use a tag in an IAM policy to implement access controls to c
     ]
 }
 ```
+As shown above, ec2s are restricted to be accessed by current user which is tagged as `Owner` on them.
 
 - Enforcing standardized tagging can be done via AWS Config Rules or custom scripts.
 
-For example, EC2 instances not propery tagged are 
+For example, EC2 instances not propery tagged are
 stopped or terminated nightly
 
 - Most resources can have up to 50 tags.
