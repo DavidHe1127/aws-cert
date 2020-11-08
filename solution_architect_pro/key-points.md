@@ -1,4 +1,4 @@
-## Key points next q 71
+## Key points next q 81
 
 ### Autoscaling
 
@@ -41,6 +41,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - DynamoDB **DOES NOT** support CW events
 - cross-region replication has 2 copies and hence **double the cost**.
 - ElasticCache requires implementation code in application
+- S3 provides best durability
 
 ### Deployment and operation management
 
@@ -60,6 +61,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - VPN requires internet and does not unfold source ip
 - VPC Peering does not block anything
 - Public VIF - AWS Direct Connect public VIFs allow you to connect to the `AWS public endpoints with public IP addresses (such as Amazon S3 and Amazon DynamoDB) that are advertised to AWS` over Border Gateway Protocol (BGP).
+- `Have 2 Direct Connect conn from 2 different network carriers` and attach them to the same Virtual Private Gateway will enable a reliable conn between AWS and on-prem
 
 ### Security
 
@@ -70,4 +72,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - Use AWS System Manager on all instances to manage patching
 - S3 generated keys cannot be managed
 - Use tag-based IAM policy to implement granular access control over certain resources. Read Tagging in [cost-management](./cost-management)
-
+- AWS KMS CMK takes key control over from aws account owner
+- Kinesis Firehose can encrypt s3 at rest
+- **NOT POSSIBLE** to use `sourceip` on s3 bucket policy for VPC endpoint
+- CloudFront and AWS Shield Advanced is good with DDos protection while WAF will support blocking IPs, SQL injection attacks and Bad Bots.
