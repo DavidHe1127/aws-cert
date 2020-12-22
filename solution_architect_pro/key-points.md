@@ -1,4 +1,4 @@
-## Key points next q 133
+## Key points next q 137
 
 ### Autoscaling
 
@@ -22,7 +22,7 @@
 - Route53 Health Check needs the endpoint must return an HTTP `2xx` or `3xx` status code and must appear within first `5,120` bytes of the response.
 - RDS cross-region snapshot copy could take hours to complete!!!
 - There isn't `AWS-RunWindowsPatchBaseline` but is `AWS-RunPatchBaseline`.
--  CFN stackset lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template. 
+-  CFN stackset lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template.
 - AWS WorkSpaces used for Windows RDP setup/access
 
 
@@ -52,7 +52,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - GP2 has **3 IOPS** per GB
 - EFS has **higher latency** than EBS provisioned IOPS
 - DynamoDB **DOES NOT** support CW events
-- DynamoDB should be considered when a lot more reads than writes 
+- DynamoDB should be considered when a lot more reads than writes
 - cross-region replication has 2 copies and hence **double the cost**.
 - ElasticCache requires implementation code in application
 - S3 provides best durability
@@ -86,7 +86,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 
 ### Security
 
-- Use **AWS Org** and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**. 
+- Use **AWS Org** and add accounts from departments to an O(rg) (U)nit when seeing **autonomy/service isolations**.
 - **When choosing multi-account solution, OU is something you need to make sure is present!**
 - Cloudtrail to SNS **DOES NOT** have filtering
 - **Amazon S3 event notifications typically deliver events in seconds but can sometimes take a minute or longer. On very rare occasions, events might be lost**
@@ -98,7 +98,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - Kinesis Firehose can encrypt s3 at rest
 - **NOT POSSIBLE** to use `sourceip` on s3 bucket policy for VPC endpoint
 - CloudFront and AWS Shield Advanced is good with DDos protection while WAF will support blocking IPs, SQL injection attacks and Bad Bots.
-- SCPs (Service Control Policy) **alone are not sufficient to granting permissions to the accounts in your organization.** No permissions are granted by an SCP. An SCP defines a guardrail, or sets limits, on the actions that the account's administrator can delegate to the IAM users and roles in the affected accounts. 
+- SCPs (Service Control Policy) **alone are not sufficient to granting permissions to the accounts in your organization.** No permissions are granted by an SCP. An SCP defines a guardrail, or sets limits, on the actions that the account's administrator can delegate to the IAM users and roles in the affected accounts.
 
 ---
 
