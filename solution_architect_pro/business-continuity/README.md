@@ -11,6 +11,8 @@
 - Recovery Time Objective - time that it takes after a disruption to restore business processes to ther service levels
 - Recovery Point Objective - Acceptable amount of data loss measured in time. Time between the good data set and disaster happens
 
+Analogous example for RPO - Say you are editing a text file and you save the progress regularly i.e 1 hour. The latest save happens at 8:00PM. After this point, you forget to save and keep editing for another 3 hours of time. However, power outage strikes at 11:00PM which costs 3 hours of your work. Therefore, you have lost 3 hours of work. In other way, your RPO is 3 hours. To have smaller RPO, you would need to remember to save more often than 3 hours.
+
 ![rpo-vs-rto](rpo-vs-rto.png)
 
 #### AWS Continuum of HA
