@@ -1,4 +1,4 @@
-## Key points next q 137
+## Key points next q 166
 
 ### Autoscaling
 
@@ -24,6 +24,7 @@
 - There isn't `AWS-RunWindowsPatchBaseline` but is `AWS-RunPatchBaseline`.
 -  CFN stackset lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template.
 - AWS WorkSpaces used for Windows RDP setup/access
+- In general, you should set `Route53 Evaluate Target Health` to Yes for all the alias records in a tree. If you set Evaluate Target Health to No, Route 53 continues to route traffic to the records that an alias record refers to even if health checks for those records are failing.
 
 
 ### Cost Management
@@ -44,6 +45,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - AWS Application Discovery Service helps enterprise customers plan migration projects by gathering information about their on-premises data centers. It has 2 flavours - agent and agentless. When processes information is required, must use agent.
 - AWS Database Migration Service does not work with ElasticCache
 - Use AWS DMS - Database Migration Service to load and replicate the dataset between on-premise db and replication instance hosted on AWS
+- The AWS Schema Conversion Tool (AWS SCT) helps convert your existing database schema from one database engine to another. You can convert from a relational OLTP schema or any supported data warehouse OLAP schema to Amazon RDS (for example, Amazon Aurora MySQL or Amazon Aurora PostgreSQL, among others). This feature can be enabled without having to delete and recreate AWS Org.
 
 ### Data Store
 
@@ -56,6 +58,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - cross-region replication has 2 copies and hence **double the cost**.
 - ElasticCache requires implementation code in application
 - S3 provides best durability
+- Amazon EMR is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark. Larget dataset processing prefers EMR.
 
 ### Deployment and operation management
 
@@ -66,6 +69,9 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - lambda can support up to 1000 concurrent calls per second. But limit can be increased.
 - Service limit with cloudwatch requires users to be on **Business Plan**
 - In dedicated host, `Host Affinity` is set to Host, an instance launched onto a specific host always restarts on the same host if stopped.
+- Full stack Health Check on Route53 level can reduce the number of requests a lot as we don't need to check each instance
+- Use Data Lifecycle Management service to schedule snapshot creation
+- APIG + Lambda - Corresponding error codes on the Method Response in API Gateway, Add integration Responses - regular expression and associate them with HTTP status codes.
 
 ### Networking
 
@@ -82,6 +88,8 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 ![direct-connect](diagrams/direct-connect.png)
 - `Have 2 Direct Connect conn from 2 different network carriers` and attach them to the same Virtual Private Gateway will enable a reliable conn between AWS and on-prem
 - IPv6 **NOT SUPPORTED** by NAT Gateway or NAT Instance
+- Use the new Direct Connect Gateway to establish connectivity that spans VPCs spreading across multiple AWS Regions. This option is **cost-effective**.
+![direct-connect-gateway](./networking/direct-connect-gateway.png)
 
 
 ### Security
@@ -99,6 +107,9 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - **NOT POSSIBLE** to use `sourceip` on s3 bucket policy for VPC endpoint
 - CloudFront and AWS Shield Advanced is good with DDos protection while WAF will support blocking IPs, SQL injection attacks and Bad Bots.
 - SCPs (Service Control Policy) **alone are not sufficient to granting permissions to the accounts in your organization.** No permissions are granted by an SCP. An SCP defines a guardrail, or sets limits, on the actions that the account's administrator can delegate to the IAM users and roles in the affected accounts.
+- User pool in Cognito is just a directory of users. Use Identity Pool for federated authentication strategy.
+- VPCE + S3 policy - a) VPCE policy to only allow operations to perform on the bucket in question. b) S3 Bucket Policy to deny all actions if the source VPCE is not equal to id of VPCE that's created.
+- Role switching - Imagine that you have Amazon EC2 instances that are critical to your organization. Instead of directly granting your users permission to terminate the instances, you can create a role with those privileges. Then allow administrators to switch to the role when they need to terminate an instance.
 
 ---
 
@@ -113,3 +124,13 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 ### Lambda
 
 - CPU is allocated linearly in proportion to the amount of memory configured - You cannot control CPU allocation directly.
+
+### AWS Glue
+
+- Glue automatically generates Scala or Python code for your ETL jobs. NOT JAVA!!!
+- Scheduled crawling period can be as short as **5 mins**.
+
+### AWS Rekognition
+
+- Use case is detect a known face in a video stream.
+- It uses Kinesis Video Streams to receive and process a video stream. **NOT S3**
