@@ -1,4 +1,4 @@
-## Key points next q 166
+## Key points next q 181
 
 ### Autoscaling
 
@@ -9,6 +9,7 @@
 - Use ElasticBeanstalk will give you least amount of efforts to enable autoscaling while keeping no service disruption
 - Aurora volume will grow automatically up to **64 TB** by itself without the need from other auto-scaling driver i.e lambda.
 - DynamoDB has no max data limit
+- Instance Type - (R)am optimised. (M) instance provides a good balance of CPU, RAM, and disk size/performance. (C)ompute optimised. (I) storage optimised.
 
 ### Business Continuity
 
@@ -22,10 +23,9 @@
 - Route53 Health Check needs the endpoint must return an HTTP `2xx` or `3xx` status code and must appear within first `5,120` bytes of the response.
 - RDS cross-region snapshot copy could take hours to complete!!!
 - There isn't `AWS-RunWindowsPatchBaseline` but is `AWS-RunPatchBaseline`.
--  CFN stackset lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template.
+- CFN stackset lets you create stacks in AWS accounts across regions by using a single AWS CloudFormation template.
 - AWS WorkSpaces used for Windows RDP setup/access
 - In general, you should set `Route53 Evaluate Target Health` to Yes for all the alias records in a tree. If you set Evaluate Target Health to No, Route 53 continues to route traffic to the records that an alias record refers to even if health checks for those records are failing.
-
 
 ### Cost Management
 
@@ -83,6 +83,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - max limit **125** peering conns per vpc
 - VPN requires internet and does not unfold source ip
 - VPC Peering does not block anything
+- [VPC Peering - look at One VPC peered with two VPCs](https://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-full-access.html). Routes in route table are static routes.
 - Public VIF - AWS Direct Connect public VIFs allow you to connect to the `AWS public endpoints with public IP addresses (such as Amazon S3 and Amazon DynamoDB) that are advertised to AWS` over Border Gateway Protocol (BGP).
 - Private VIF - Connect you to a VPC via Direct Connect Gateway to any AWS region
 ![direct-connect](diagrams/direct-connect.png)
@@ -110,6 +111,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - User pool in Cognito is just a directory of users. Use Identity Pool for federated authentication strategy.
 - VPCE + S3 policy - a) VPCE policy to only allow operations to perform on the bucket in question. b) S3 Bucket Policy to deny all actions if the source VPCE is not equal to id of VPCE that's created.
 - Role switching - Imagine that you have Amazon EC2 instances that are critical to your organization. Instead of directly granting your users permission to terminate the instances, you can create a role with those privileges. Then allow administrators to switch to the role when they need to terminate an instance.
+- Use `DNSSEC` to preclude man-in-the-middle attacks. See [this](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-configure-dnssec)
 
 ---
 
@@ -117,7 +119,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 
 - 404 error when accessing objects on s3? **Add another origin and behaviour**.
 
-### BealStalk
+### BeanStalk
 
 - `Swap Env URLs` option for Blue/Green deployment.
 

@@ -52,7 +52,7 @@ As shown above, ec2s are restricted to be accessed by current user which is tagg
 
 - Enforcing standardized tagging can be done via AWS Config Rules or custom scripts.
 
-For example, EC2 instances not propery tagged are
+For example, EC2 instances not properly tagged are
 stopped or terminated nightly
 
 - Most resources can have up to 50 tags.
