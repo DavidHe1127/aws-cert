@@ -1,4 +1,4 @@
-## Key points next q 235
+## Key points next q 241
 
 ### Autoscaling
 
@@ -61,11 +61,13 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - DynamoDB **DOES NOT** support CW events
 - DynamoDB should be considered when a lot more reads than writes
 - DynamoDB not suitable for structured data
+- DynamoDB doesn't support strongly consistent read on global tables cross-region. In order for it to work, the application needs to write and read data from the same region.
 - cross-region replication has 2 copies and hence **double the cost**.
 - ElasticCache requires implementation code in application
 - S3 provides best durability
 - Amazon EMR is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark. Larget dataset processing prefers EMR.
 - AWS S3 Glacier has a minimum 90 days of storage. If pull data from that, it will incur pro-rated charge.
+- S3 supports object tag based replication. This helps org selectively replicate objects when being uploaded by using tags on objects.
 
 ### Deployment and operation management
 
@@ -160,9 +162,10 @@ AWS CodeDeploy - Deploy things.
 ![direct-connect-gateway](./networking/direct-connect-gateway.png)
 - Direct Connect takes priority over configured VPN Conn automatically. So no need to change BGP priority.
 
-
 ### KMS and signed cert
 
 Configure the Auto Scaling group to send an SNS notification of the launch of a new instance to the trusted key management service. Have the Key management service generate a signed certificate and send it directly to the newly launched instance
 
+### CodeDeploy
 
+CodeDeploy agent installed on the EC2 **must be** able to access public AWS CodeDeploy and Amazon S3 service endpoints.
