@@ -1,4 +1,4 @@
-## Key points next q 181
+## Key points next q 235
 
 ### Autoscaling
 
@@ -36,7 +36,11 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - When s3 needs to be accessed by a group of orgs. S3 owner can impose a s3 policy to enable other orgs to have access to it subject to each of them having own aws account. Enable **Requester Pays on the bucket**. Have the orgs use their own aws credentials when accessing the bucket.
 - EMR master node **CANNOT** be on a spot instance
 - Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run. It's **CHEAP**. Can be integrated with AWS QuickSight for data visualization.
+- Athena can be used to analyze s3 requests through `S3 Access Logs`. i.e identify request source ip.
 - Cost explorer, trust advisor, consolidated billing - 3 things to remember when considering cost-saving topics
+- Consolidated Billing enables you to see a combined view of AWS costs incurred by all accounts in your department or company, as well as obtain a detailed cost report for each individual AWS account associated with your paying account
+- AWS Cost Explorer + AWS Budget to a) get the cause of cost spike b) notify using team
+- Use Standard Reserved Instance for applications with steady/predictable usage - no spike/big fall in traffic.
 
 ### Migration
 
@@ -46,6 +50,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - AWS Database Migration Service does not work with ElasticCache
 - Use AWS DMS - Database Migration Service to load and replicate the dataset between on-premise db and replication instance hosted on AWS
 - The AWS Schema Conversion Tool (AWS SCT) helps convert your existing database schema from one database engine to another. You can convert from a relational OLTP schema or any supported data warehouse OLAP schema to Amazon RDS (for example, Amazon Aurora MySQL or Amazon Aurora PostgreSQL, among others). This feature can be enabled without having to delete and recreate AWS Org.
+- Use AWS SMS (Server Migration Service) Export to help with on-prem VM cloud migration.
 
 ### Data Store
 
@@ -55,10 +60,12 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - EFS has **higher latency** than EBS provisioned IOPS
 - DynamoDB **DOES NOT** support CW events
 - DynamoDB should be considered when a lot more reads than writes
+- DynamoDB not suitable for structured data
 - cross-region replication has 2 copies and hence **double the cost**.
 - ElasticCache requires implementation code in application
 - S3 provides best durability
 - Amazon EMR is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark. Larget dataset processing prefers EMR.
+- AWS S3 Glacier has a minimum 90 days of storage. If pull data from that, it will incur pro-rated charge.
 
 ### Deployment and operation management
 
@@ -72,25 +79,20 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - Full stack Health Check on Route53 level can reduce the number of requests a lot as we don't need to check each instance
 - Use Data Lifecycle Management service to schedule snapshot creation
 - APIG + Lambda - Corresponding error codes on the Method Response in API Gateway, Add integration Responses - regular expression and associate them with HTTP status codes.
+- AWS CodeCommit - source control. AWS CodeBuild - build artifacts like app images. AWS CodePipeline - CI/CD Pipeline.
+AWS CodeDeploy - Deploy things.
 
 ### Networking
 
 - Site-to-Site VPN Conn **DOES NOT** provide high bandwidth. Each AWS Site-to-Site VPN connection has two tunnels and each tunnel supports a maximum throughput of up to **1.25 Gbp**.
 - Software VPN with clustering has **ONLY** one conn and hence isn't HA
-- Use **public virtual interface** on a Direct Connect to transfer huge amount of data over the weekend
-- When being asked about data movement, choose `Public virtual interface` on a Direct Connect connection.
-- Direct Connect taks **3** days to setup - Public Virtual Interface is time consuming as AWS will need to review client's request.
 - max limit **125** peering conns per vpc
 - VPN requires internet and does not unfold source ip
 - VPC Peering does not block anything
 - [VPC Peering - look at One VPC peered with two VPCs](https://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-full-access.html). Routes in route table are static routes.
-- Public VIF - AWS Direct Connect public VIFs allow you to connect to the `AWS public endpoints with public IP addresses (such as Amazon S3 and Amazon DynamoDB) that are advertised to AWS` over Border Gateway Protocol (BGP).
-- Private VIF - Connect you to a VPC via Direct Connect Gateway to any AWS region
-![direct-connect](diagrams/direct-connect.png)
-- `Have 2 Direct Connect conn from 2 different network carriers` and attach them to the same Virtual Private Gateway will enable a reliable conn between AWS and on-prem
+- Use S3 Transfer Acceleration when uploading large objects and experiencing slow speed.
 - IPv6 **NOT SUPPORTED** by NAT Gateway or NAT Instance
-- Use the new Direct Connect Gateway to establish connectivity that spans VPCs spreading across multiple AWS Regions. This option is **cost-effective**.
-![direct-connect-gateway](./networking/direct-connect-gateway.png)
+- You cannot auto-assign a public IP address if you specify more than one network interface in your instance. Use `EIP` in this case.
 
 
 ### Security
@@ -106,12 +108,18 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - AWS KMS CMK takes key control over from aws account owner
 - Kinesis Firehose can encrypt s3 at rest
 - **NOT POSSIBLE** to use `sourceip` on s3 bucket policy for VPC endpoint
+- Bucket policy can grant permissions to the role **NOT account**
 - CloudFront and AWS Shield Advanced is good with DDos protection while WAF will support blocking IPs, SQL injection attacks and Bad Bots.
 - SCPs (Service Control Policy) **alone are not sufficient to granting permissions to the accounts in your organization.** No permissions are granted by an SCP. An SCP defines a guardrail, or sets limits, on the actions that the account's administrator can delegate to the IAM users and roles in the affected accounts.
+- SCPs are available only in an organization that has **all features enabled**.
 - User pool in Cognito is just a directory of users. Use Identity Pool for federated authentication strategy.
 - VPCE + S3 policy - a) VPCE policy to only allow operations to perform on the bucket in question. b) S3 Bucket Policy to deny all actions if the source VPCE is not equal to id of VPCE that's created.
 - Role switching - Imagine that you have Amazon EC2 instances that are critical to your organization. Instead of directly granting your users permission to terminate the instances, you can create a role with those privileges. Then allow administrators to switch to the role when they need to terminate an instance.
 - Use `DNSSEC` to preclude man-in-the-middle attacks. See [this](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-configure-dnssec)
+- If CMK material needs to be imported from outside, create a CMK in KMS with no key material which sets the origin to `EXTERNAL`.
+- **AWS Config rules + AWS System Manager Automation can automatically remediate S3 bucket policy change**
+- For the API Gateway method, set the authorization to AWS_IAM. Then, give the IAM user or role execute-api:Invoke permission on the REST API resource. Enable the API caller to sign requests with AWS Signature when accessing the endpoint. Use AWS X-Ray to trace and analyze user requests to API Gateway.
+
 
 ---
 
@@ -122,6 +130,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 ### BeanStalk
 
 - `Swap Env URLs` option for Blue/Green deployment.
+- RDS needs to be deployed separately from BeanStalk in **production** environment.
 
 ### Lambda
 
@@ -136,3 +145,24 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 
 - Use case is detect a known face in a video stream.
 - It uses Kinesis Video Streams to receive and process a video stream. **NOT S3**
+
+### VPN vs AWS Direct Connect
+
+- VPC VPN Connection utilizes IPSec to establish encrypted network connectivity between your intranet and Amazon VPC over the **Internet**. VPN Connections can be configured in minutes and are a good solution if you have an immediate need, have low to modest bandwidth requirements, and can tolerate the inherent variability in Internet-based connectivity. AWS Direct Connect does not involve the Internet; instead, it uses dedicated, private network connections between your intranet and Amazon VPC.
+- Use **public virtual interface** on a Direct Connect to transfer huge amount of data over the weekend
+- When being asked about data movement, choose `Public virtual interface` on a Direct Connect connection.
+- Direct Connect taks **3** days to setup - Public Virtual Interface is time consuming as AWS will need to review client's request.
+- Public VIF - AWS Direct Connect public VIFs allow you to connect to the `AWS public endpoints with public IP addresses (such as Amazon S3 and Amazon DynamoDB) that are advertised to AWS` over Border Gateway Protocol (BGP).
+- Private VIF - Connect you to a VPC via Direct Connect Gateway to any AWS region
+![direct-connect](diagrams/direct-connect.png)
+- `Have 2 Direct Connect conn from 2 different network carriers` and attach them to the same Virtual Private Gateway will enable a reliable conn between AWS and on-prem
+- Use the new Direct Connect Gateway to establish connectivity that spans VPCs spreading across multiple AWS Regions. This option is **cost-effective**.
+![direct-connect-gateway](./networking/direct-connect-gateway.png)
+- Direct Connect takes priority over configured VPN Conn automatically. So no need to change BGP priority.
+
+
+### KMS and signed cert
+
+Configure the Auto Scaling group to send an SNS notification of the launch of a new instance to the trusted key management service. Have the Key management service generate a signed certificate and send it directly to the newly launched instance
+
+
