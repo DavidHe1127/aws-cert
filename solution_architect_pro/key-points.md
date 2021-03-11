@@ -1,4 +1,4 @@
-## Key points next q 241
+## Key points next q 242
 
 ### Autoscaling
 
@@ -37,7 +37,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - EMR master node **CANNOT** be on a spot instance
 - Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run. It's **CHEAP**. Can be integrated with AWS QuickSight for data visualization.
 - Athena can be used to analyze s3 requests through `S3 Access Logs`. i.e identify request source ip.
-- Cost explorer, trust advisor, consolidated billing - 3 things to remember when considering cost-saving topics
+- Cost Explorer, Trusted Advisor, Consolidated Billing - 3 things to remember when considering cost-saving topics
 - Consolidated Billing enables you to see a combined view of AWS costs incurred by all accounts in your department or company, as well as obtain a detailed cost report for each individual AWS account associated with your paying account
 - AWS Cost Explorer + AWS Budget to a) get the cause of cost spike b) notify using team
 - Use Standard Reserved Instance for applications with steady/predictable usage - no spike/big fall in traffic.
@@ -76,7 +76,7 @@ With Lambda@Edge, you can enrich your web applications by making them globally d
 - `--regions` is NOT a valid param in cfn cli.
 - **`Aurora` cluster is multi-az by default**
 - lambda can support up to 1000 concurrent calls per second. But limit can be increased.
-- Service limit with cloudwatch requires users to be on **Business Plan**
+- Use Amazon CloudWatch Events to detect and react to changes in the status of Trusted Advisor checks i.e service limit approaching. Available with AWS Business Support and AWS Enterprise Support.
 - In dedicated host, `Host Affinity` is set to Host, an instance launched onto a specific host always restarts on the same host if stopped.
 - Full stack Health Check on Route53 level can reduce the number of requests a lot as we don't need to check each instance
 - Use Data Lifecycle Management service to schedule snapshot creation
